@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/White"
+    >
+
+
+
+        <TextView
+            android:id="@+id/txtAmount"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/fontsize_13"
+            android:paddingTop="@dimen/size_2"
+            android:text="Amount - Rs 7000"
+            android:textStyle="bold"
+            android:paddingBottom="@dimen/size_2"
+            android:textColor="#000000"
+            android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft" />
+
+        <TextView
+            android:id="@+id/txtCatg"
+             android:layout_below="@+id/txtAmount"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/fontsize_13"
+            android:paddingTop="@dimen/size_2"
+            android:text=""
+            android:textStyle="italic"
+            android:paddingBottom="@dimen/size_2"
+            android:textColor="#000000"
+            android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+            android:visibility="gone"
+            />
+
+        <TextView
+            android:id="@+id/lblListItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/fontsize_13"
+            android:paddingTop="@dimen/size_2"
+            android:paddingRight="@dimen/size_8"
+            android:text=""
+            android:paddingBottom="@dimen/size_2"
+            android:textColor="@color/colorPrimary"
+            android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft" />
+
+        <TextView
+            android:id="@+id/txtPaymentType"
+            android:layout_below="@+id/txtCatg"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/fontsize_13"
+            android:paddingTop="@dimen/size_2"
+            android:text=""
+            android:textStyle="italic"
+            android:paddingBottom="@dimen/size_2"
+            android:textColor="#000000"
+            android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft" />
+
+
+
+
+      <TextView
+        android:id="@+id/txtShortNotes"
+          android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+          android:layout_below="@+id/txtPaymentType"
+        android:textSize="@dimen/fontsize_13"
+        android:paddingTop="@dimen/size_2"
+          android:paddingRight="@dimen/size_8"
+        android:textStyle="italic"
+        android:text=""
+        android:paddingBottom="@dimen/size_2"
+        android:textColor="#000000"
+        android:visibility="gone"
+        android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft" />
+
+
+</RelativeLayout>

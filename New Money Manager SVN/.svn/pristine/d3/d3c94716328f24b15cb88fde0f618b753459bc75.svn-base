@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="MPAndroidChart-master">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/MPAndroidChart-master.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

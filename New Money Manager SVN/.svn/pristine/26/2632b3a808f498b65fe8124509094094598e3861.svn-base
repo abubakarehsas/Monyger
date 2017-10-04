@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_main.xml",
+        "source": "F:\\MyProj\\Money Manager svn\\app\\src\\main\\res\\menu\\menu_main.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_main.xml",
+        "source": "D:\\Money Manager svn\\app\\src\\main\\res\\menu\\menu_main.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_main.xml",
+        "source": "F:\\MyProj\\New Money Manager Svn\\app\\src\\main\\res\\menu\\menu_main.xml"
+    }
+]

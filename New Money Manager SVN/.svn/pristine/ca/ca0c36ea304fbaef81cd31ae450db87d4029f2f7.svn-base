@@ -1,0 +1,571 @@
+package com.asisdroid.moneymanager.Dialog;
+
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.asisdroid.moneymanager.R;
+
+/**
+ * Created by ashishkumarpolai on 7/14/2017.
+ * CAN BE USED FOR ALL DIALOGS
+ */
+
+public class DialogCalculatorFragment extends DialogFragment {
+
+    //CALCULATOR ELEMENTS
+    private Button button0 , button1 , button2 , button3 , button4 , button5 , button6 ,
+            button7 , button8 , button9 , buttonAdd , buttonSub , buttonDivision ,
+            buttonMul , button10 , buttonC , buttonEqual, buttonbackspace ;
+
+    private TextView txtCalculation, txtTotalAMount, forCalculation ;
+
+    private float mValueOne , mValueTwo ;
+
+    private boolean mAddition , mSubtract ,mMultiplication ,mDivision, mCalculated ;
+    private LayoutInflater inflater;
+    private View dialogView;
+    private static View fragView;
+    private ImageView copyAmount;
+
+    public AlertDialog alertDialog;
+
+    private String tempData;
+
+    private EditText edttxtMainAMount;
+
+    private int finalCopyAmount;
+
+    public static DialogCalculatorFragment getInstance(View fragmentView){
+
+        //  BELOW CODES FOR PASSING THE PARAMETERS HERE FROM CALLING FRAGMENTS
+     /*   Bundle b = new Bundle();
+        b.putString("", message);
+
+        DialogDatepickerFragment dialogDatepickerFragment = new DialogDatepickerFragment();
+        dialogDatepickerFragment.setArguments(b);*/
+        fragView = fragmentView;
+
+        return new DialogCalculatorFragment();
+    }
+
+    /*
+    //PASS SOME VARIABLE FROM THE ACTIVITY
+
+    public void setCal(Calendar cal){
+        this.cal = cal;
+    }*/
+
+
+   //WILL BE CALLED ONLY ON SHOW DIALOG
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+        inflater = getActivity().getLayoutInflater();
+        dialogView = inflater.inflate(R.layout.calculator_layout, null);
+        initCalculatorUI();
+        initCalculatorEvents();
+        alertDialogBuilder.setView(dialogView);
+
+        alertDialog = alertDialogBuilder.create();
+        alertDialog.setCanceledOnTouchOutside(false);
+        return alertDialog;
+    }
+
+//CALCULATOR CODES
+
+    public void initCalculatorUI()
+    {
+        button0 = (Button) dialogView.findViewById(R.id.btn0);
+        button1 = (Button) dialogView.findViewById(R.id.btn1);
+        button2 = (Button) dialogView.findViewById(R.id.btn2);
+        button3 = (Button) dialogView.findViewById(R.id.btn3);
+        button4 = (Button) dialogView.findViewById(R.id.btn4);
+        button5 = (Button) dialogView.findViewById(R.id.btn5);
+        button6 = (Button) dialogView.findViewById(R.id.btn6);
+        button7 = (Button) dialogView.findViewById(R.id.btn7);
+        button8 = (Button) dialogView.findViewById(R.id.btn8);
+        button9 = (Button) dialogView.findViewById(R.id.btn9);
+        button10 = (Button) dialogView.findViewById(R.id.btn10);
+        buttonAdd = (Button) dialogView.findViewById(R.id.btnadd);
+        buttonSub = (Button) dialogView.findViewById(R.id.btnsub);
+        buttonMul = (Button) dialogView.findViewById(R.id.btnmul);
+        buttonDivision = (Button) dialogView.findViewById(R.id.btndiv);
+        buttonC = (Button) dialogView.findViewById(R.id.btnC);
+        buttonEqual = (Button) dialogView.findViewById(R.id.btneql);
+        buttonbackspace = (Button) dialogView.findViewById(R.id.btnbackspace);
+        txtCalculation = (TextView) dialogView.findViewById(R.id.edt1);
+        txtTotalAMount = (TextView) dialogView.findViewById(R.id.edt2);
+        forCalculation = (TextView) dialogView.findViewById(R.id.forCalculation);
+        copyAmount = (ImageView) dialogView.findViewById(R.id.copyAmount);
+
+        copyAmount.bringToFront();
+
+        edttxtMainAMount = (EditText) fragView.findViewById(R.id.edtxtAmount);
+
+        mCalculated = false;
+    }
+
+    public void initCalculatorEvents()
+    {
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mCalculated == false) {
+                    txtCalculation.setText(txtCalculation.getText() + "1");
+                    forCalculation.setText(forCalculation.getText() + "1");
+                }
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mCalculated == false) {
+                    txtCalculation.setText(txtCalculation.getText() + "2");
+                    forCalculation.setText(forCalculation.getText() + "2");
+                }
+            }
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mCalculated == false) {
+                    txtCalculation.setText(txtCalculation.getText() + "3");
+                    forCalculation.setText(forCalculation.getText() + "3");
+                }
+            }
+        });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mCalculated == false) {
+                    txtCalculation.setText(txtCalculation.getText() + "4");
+                    forCalculation.setText(forCalculation.getText() + "4");
+                }
+            }
+        });
+
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mCalculated == false) {
+                txtCalculation.setText(txtCalculation.getText()+"5");
+                forCalculation.setText(forCalculation.getText()+"5");
+                }
+            }
+        });
+
+        button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mCalculated == false) {
+                    txtCalculation.setText(txtCalculation.getText() + "6");
+                    forCalculation.setText(forCalculation.getText() + "6");
+                }
+            }
+        });
+
+        button7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mCalculated == false) {
+                    txtCalculation.setText(txtCalculation.getText() + "7");
+                    forCalculation.setText(forCalculation.getText() + "7");
+                }
+            }
+        });
+
+        button8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mCalculated == false) {
+                    txtCalculation.setText(txtCalculation.getText() + "8");
+                    forCalculation.setText(forCalculation.getText() + "8");
+                }
+            }
+        });
+
+        button9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mCalculated == false) {
+                    txtCalculation.setText(txtCalculation.getText() + "9");
+                    forCalculation.setText(forCalculation.getText() + "9");
+                }
+            }
+        });
+
+        button0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mCalculated == false) {
+                    txtCalculation.setText(txtCalculation.getText() + "0");
+                    forCalculation.setText(forCalculation.getText() + "0");
+                }
+            }
+        });
+
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mAddition == true || mSubtract == true || mMultiplication==true || mDivision == true) {
+                    if(!(forCalculation.getText().toString().equalsIgnoreCase(""))) {
+                        mValueTwo = Float.parseFloat(forCalculation.getText() + "");
+
+                        if (mAddition == true){
+
+                            forCalculation.setText(mValueOne + mValueTwo +"");
+                            mAddition=false;
+                        }
+
+
+                        if (mSubtract == true){
+                            forCalculation.setText(mValueOne - mValueTwo+"");
+                            mSubtract=false;
+                        }
+
+                        if (mMultiplication == true){
+                            forCalculation.setText(mValueOne * mValueTwo+"");
+                            mMultiplication=false;
+                        }
+
+                        if (mDivision == true){
+                            forCalculation.setText(mValueOne / mValueTwo+"");
+                            mDivision=false;
+                        }
+                        txtTotalAMount.setText(forCalculation.getText());
+                        //Flag for calculation done by operators not by equals sign
+                        mCalculated = true;
+                    }
+                }
+                mCalculated =false;
+                mAddition = true;
+                mSubtract = false;
+                mMultiplication=false;
+                mDivision =false;
+
+                if(forCalculation.getText()!=null && (!(forCalculation.getText().toString().equalsIgnoreCase("")))) {
+                    mValueOne = Float.parseFloat(forCalculation.getText() + "");
+                         forCalculation.setText("");
+                }
+
+                if(txtCalculation.getText() != null && (!(txtCalculation.getText().toString().equalsIgnoreCase(""))))
+                {
+                    tempData = ((txtCalculation.getText().toString()).substring((txtCalculation.getText().length())-1)).toString();
+                    if(tempData.equalsIgnoreCase("+")) {
+                    }
+                    else
+                    if(tempData.equalsIgnoreCase("/") || tempData.equalsIgnoreCase("*") || tempData.equalsIgnoreCase("-")) {
+                        txtCalculation.setText(txtCalculation.getText().toString().substring(0,(txtCalculation.getText().length())-1)+"+");
+                    }
+                    else
+                    {
+                        txtCalculation.setText(txtCalculation.getText()+"+");
+                    }
+
+                }
+            }
+        });
+
+        buttonSub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mAddition == true || mSubtract == true || mMultiplication==true || mDivision == true) {
+                    if(!(forCalculation.getText().toString().equalsIgnoreCase(""))) {
+                        mValueTwo = Float.parseFloat(forCalculation.getText() + "");
+                        if (mAddition == true){
+
+                            forCalculation.setText(mValueOne + mValueTwo +"");
+                            mAddition=false;
+                        }
+
+
+                        if (mSubtract == true){
+                            forCalculation.setText(mValueOne - mValueTwo+"");
+                            mSubtract=false;
+                        }
+
+                        if (mMultiplication == true){
+                            forCalculation.setText(mValueOne * mValueTwo+"");
+                            mMultiplication=false;
+                        }
+
+                        if (mDivision == true){
+                            forCalculation.setText(mValueOne / mValueTwo+"");
+                            mDivision=false;
+                        }
+                        txtTotalAMount.setText(forCalculation.getText());
+                        //Flag for calculation done by operators not by equals sign
+                        mCalculated = true;
+                    }
+                }
+
+                mCalculated =false;
+                mAddition = false;
+                mSubtract = true;
+                mMultiplication=false;
+                mDivision =false;
+
+                if(forCalculation.getText()!=null && (!(forCalculation.getText().toString().equalsIgnoreCase("")))) {
+                    mValueOne = Float.parseFloat(forCalculation.getText() + "");
+                        forCalculation.setText("");
+                }
+
+                if(txtCalculation.getText() != null && (!(txtCalculation.getText().toString().equalsIgnoreCase(""))))
+                {
+                    tempData = ((txtCalculation.getText().toString()).substring((txtCalculation.getText().length())-1)).toString();
+                    if(tempData.equalsIgnoreCase("-")) {
+                    }
+                    else
+                    if(tempData.equalsIgnoreCase("/") || tempData.equalsIgnoreCase("*") || tempData.equalsIgnoreCase("+")) {
+                        txtCalculation.setText(txtCalculation.getText().toString().substring(0,(txtCalculation.getText().length())-1)+"-");
+                    }
+                    else
+                    {
+                        txtCalculation.setText(txtCalculation.getText()+"-");
+                    }
+                }
+            }
+        });
+
+        buttonMul.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mAddition == true || mSubtract == true || mMultiplication==true || mDivision == true) {
+                    if(!(forCalculation.getText().toString().equalsIgnoreCase(""))) {
+                        mValueTwo = Float.parseFloat(forCalculation.getText() + "");
+                        if (mAddition == true){
+
+                            forCalculation.setText(mValueOne + mValueTwo +"");
+                            mAddition=false;
+                        }
+
+
+                        if (mSubtract == true){
+                            forCalculation.setText(mValueOne - mValueTwo+"");
+                            mSubtract=false;
+                        }
+
+                        if (mMultiplication == true){
+                            forCalculation.setText(mValueOne * mValueTwo+"");
+                            mMultiplication=false;
+                        }
+
+                        if (mDivision == true){
+                            forCalculation.setText(mValueOne / mValueTwo+"");
+                            mDivision=false;
+                        }
+                        txtTotalAMount.setText(forCalculation.getText());
+                        //Flag for calculation done by operators not by equals sign
+                        mCalculated = true;
+                    }
+                }
+
+                mCalculated =false;
+                mAddition = false;
+                mSubtract = false;
+                mMultiplication=true;
+                mDivision =false;
+
+                if(forCalculation.getText()!=null && (!(forCalculation.getText().toString().equalsIgnoreCase("")))) {
+                    mValueOne = Float.parseFloat(forCalculation.getText() + "");
+                        forCalculation.setText("");
+                }
+
+                if(txtCalculation.getText() != null && (!(txtCalculation.getText().toString().equalsIgnoreCase(""))))
+                {
+                    tempData = ((txtCalculation.getText().toString()).substring((txtCalculation.getText().length())-1)).toString();
+                    if(tempData.equalsIgnoreCase("*")) {
+                    }
+                    else
+                    if(tempData.equalsIgnoreCase("/") || tempData.equalsIgnoreCase("+") || tempData.equalsIgnoreCase("-")) {
+                        txtCalculation.setText(txtCalculation.getText().toString().substring(0,(txtCalculation.getText().length())-1)+"*");
+                    }
+                    else
+                    {
+                        txtCalculation.setText(txtCalculation.getText()+"*");
+                    }
+                }
+            }
+        });
+
+        buttonDivision.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mAddition == true || mSubtract == true || mMultiplication==true || mDivision == true) {
+                    if(!(forCalculation.getText().toString().equalsIgnoreCase(""))) {
+                        mValueTwo = Float.parseFloat(forCalculation.getText() + "");
+                        if (mAddition == true){
+
+                            forCalculation.setText(mValueOne + mValueTwo +"");
+                            mAddition=false;
+                        }
+
+
+                        if (mSubtract == true){
+                            forCalculation.setText(mValueOne - mValueTwo+"");
+                            mSubtract=false;
+                        }
+
+                        if (mMultiplication == true){
+                            forCalculation.setText(mValueOne * mValueTwo+"");
+                            mMultiplication=false;
+                        }
+
+                        if (mDivision == true){
+                            forCalculation.setText(mValueOne / mValueTwo+"");
+                            mDivision=false;
+                        }
+                        txtTotalAMount.setText(forCalculation.getText());
+                        //Flag for calculation done by operators not by equals sign
+                        mCalculated = true;
+                    }
+                }
+                mCalculated =false;
+                mAddition = false;
+                mSubtract = false;
+                mMultiplication=false;
+                mDivision =true;
+
+                if(forCalculation.getText()!=null && (!(forCalculation.getText().toString().equalsIgnoreCase("")))) {
+                    mValueOne = Float.parseFloat(forCalculation.getText()+"");
+                        forCalculation.setText("");
+                }
+
+                if(txtCalculation.getText() != null && (!(txtCalculation.getText().toString().equalsIgnoreCase(""))))
+                {
+                    tempData = ((txtCalculation.getText().toString()).substring((txtCalculation.getText().length())-1)).toString();
+                    if(tempData.equalsIgnoreCase("/")) {
+                    }
+                    else
+                    if(tempData.equalsIgnoreCase("*") || tempData.equalsIgnoreCase("+") || tempData.equalsIgnoreCase("-")) {
+                        txtCalculation.setText(txtCalculation.getText().toString().substring(0,(txtCalculation.getText().length())-1)+"/");
+                    }
+                    else
+                    {
+                        txtCalculation.setText(txtCalculation.getText()+"/");
+                    }
+                }
+            }
+        });
+
+        buttonEqual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mAddition == true || mSubtract == true || mMultiplication==true || mDivision == true) {
+                    if(!(forCalculation.getText().toString().equalsIgnoreCase(""))) {
+                        mValueTwo = Float.parseFloat(forCalculation.getText() + "");
+
+                        if (mAddition == true){
+
+                            forCalculation.setText(mValueOne + mValueTwo +"");
+                            mAddition=false;
+                        }
+
+
+                        if (mSubtract == true){
+                            forCalculation.setText(mValueOne - mValueTwo+"");
+                            mSubtract=false;
+                        }
+
+                        if (mMultiplication == true){
+                            forCalculation.setText(mValueOne * mValueTwo+"");
+                            mMultiplication=false;
+                        }
+
+                        if (mDivision == true){
+                            forCalculation.setText(mValueOne / mValueTwo+"");
+                            mDivision=false;
+                        }
+                        txtTotalAMount.setText(forCalculation.getText());
+                        mCalculated = true;
+                    }
+                }
+
+            }
+        });
+
+        buttonC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAddition = false;
+                mSubtract=false;
+                mMultiplication=false;
+                mDivision=false;
+                mValueOne = 0.0f;
+                mValueTwo =0.0f;
+                mCalculated = false;
+                txtCalculation.setText("");
+                forCalculation.setText("");
+                txtTotalAMount.setText("");
+            }
+        });
+
+        button10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+             if(mCalculated == false) {
+                 if (!(forCalculation.getText().toString().contains("."))) {
+                     txtCalculation.setText(txtCalculation.getText() + ".");
+                     forCalculation.setText(forCalculation.getText() + ".");
+                 }
+             }
+            }
+        });
+
+        buttonbackspace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mCalculated == false) {
+                    if(txtCalculation.getText().length()>0) {
+                        tempData = ((txtCalculation.getText().toString()).substring((txtCalculation.getText().length()) - 1)).toString();
+                        if (!(tempData.equalsIgnoreCase("+") || tempData.equalsIgnoreCase("-") || tempData.equalsIgnoreCase("*") || tempData.equalsIgnoreCase("/"))) {
+                            if (txtCalculation.getText().length() > 0) {
+                                txtCalculation.setText(txtCalculation.getText().toString().substring(0, (txtCalculation.getText().length()) - 1));
+                                forCalculation.setText(forCalculation.getText().toString().substring(0, (forCalculation.getText().length()) - 1));
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        copyAmount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(txtTotalAMount.getText()=="")
+                {
+                    Toast.makeText(getActivity(), "No amount found to be saved!", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+
+                    finalCopyAmount= (Math.round(Float.parseFloat(txtTotalAMount.getText().toString())));
+                    if(finalCopyAmount<=0)
+                    {
+                        Toast.makeText(getActivity(), "Invalid Amount!", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        edttxtMainAMount.setText(""+finalCopyAmount);
+                        alertDialog.dismiss();
+                    }
+                }
+            }
+        });
+    }
+}

@@ -1,0 +1,89 @@
+package com.asisdroid.moneymanager;
+
+import android.support.v7.app.ActionBar;
+import android.graphics.Typeface;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.StyleSpan;
+import android.view.View;
+import android.widget.ScrollView;
+import android.widget.Toast;
+
+import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
+
+public class HelpActiivty extends AppCompatActivity {
+
+    private  ExpandableRelativeLayout expandableLayout1, expandableLayout2, expandableLayout3, expandableLayout4, expandableLayout5, expandableLayout6, expandableLayout7, expandableLayout8, expandableLayout9, expandableLayout10;
+    private ScrollView mainScroll;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_help_actiivty);
+        ActionBar actionBar = getSupportActionBar();
+        //Setting Action bar string and style
+        SpannableString s = new SpannableString("Monyger - Help Me !");
+        s.setSpan(new StyleSpan(Typeface.BOLD_ITALIC), 0, s.length(), 0);
+        actionBar.setTitle(s);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        mainScroll = (ScrollView) findViewById(R.id.helpMainScrollView);
+    }
+
+    public void expandableButton1(View view) {
+        expandableLayout1 = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout1);
+        expandableLayout1.toggle();
+    }
+
+    public void expandableButton2(View view) {
+        expandableLayout2 = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout2);
+        expandableLayout2.toggle(); // toggle expand and collapse
+    }
+
+    public void expandableButton3(View view) {
+        expandableLayout3 = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout3);
+        expandableLayout3.toggle(); // toggle expand and collapse
+    }
+
+    public void expandableButton4(View view) {
+        expandableLayout4 = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout4);
+        expandableLayout4.toggle(); // toggle expand and collapse
+    }
+
+    public void expandableButton5(View view) {
+        expandableLayout5 = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout5);
+        expandableLayout5.toggle(); // toggle expand and collapse
+    }
+
+    public void expandableButton6(View view) {
+        expandableLayout6 = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout6);
+        expandableLayout6.toggle(); // toggle expand and collapse
+    }
+
+    public void expandableButton7(View view) {
+        expandableLayout7 = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout7);
+        expandableLayout7.toggle(); // toggle expand and collapse
+    }
+
+    public void expandableButton8(View view) {
+        expandableLayout8 = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout8);
+        expandableLayout8.toggle(); // toggle expand and collapse
+    }
+
+    public void expandableButton9(View view) {
+        expandableLayout9 = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout9);
+        expandableLayout9.toggle(); // toggle expand and collapse
+    }
+    public void expandableButton10(View view) {
+        expandableLayout10 = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout10);
+        expandableLayout10.toggle(); // toggle expand and collapse
+    }
+
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
+    }
+}

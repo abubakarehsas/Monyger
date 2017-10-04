@@ -1,0 +1,386 @@
+[
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\animateslider.xml",
+        "source": "F:\\MyProj\\Money Manager svn\\app\\src\\main\\res\\anim\\animateslider.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_bottom_sheet_slide_in.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\afd6caf1f32c0354f592aac2649ed9bce04207e0\\output\\res\\anim\\design_bottom_sheet_slide_in.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_bottom.xml",
+        "source": "C:\\Users\\Ashishkumarpolai\\.android\\build-cache\\ae5414787c19070c2e454fa3b224bfba22110387\\output\\res\\anim\\abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_bottom.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\4a9ee7c4c0cf4c07f3014027eafce469ba65ee52\\output\\res\\anim\\abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_snackbar_in.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\afd6caf1f32c0354f592aac2649ed9bce04207e0\\output\\res\\anim\\design_snackbar_in.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\moveup.xml",
+        "source": "F:\\MyProj\\Money Manager svn\\app\\src\\main\\res\\anim\\moveup.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_snackbar_in.xml",
+        "source": "C:\\Users\\Ashishkumarpolai\\.android\\build-cache\\b79941dc269be9a80b817ab077e7d09c7db55b74\\output\\res\\anim\\design_snackbar_in.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_in.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\4a9ee7c4c0cf4c07f3014027eafce469ba65ee52\\output\\res\\anim\\abc_fade_in.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_grow_fade_in_from_bottom.xml",
+        "source": "C:\\Users\\Ashishkumarpolai\\.android\\build-cache\\ae5414787c19070c2e454fa3b224bfba22110387\\output\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\cycle.xml",
+        "source": "D:\\Money Manager svn\\app\\src\\main\\res\\anim\\cycle.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_bottom_sheet_slide_out.xml",
+        "source": "C:\\Users\\Ashishkumarpolai\\.android\\build-cache\\b79941dc269be9a80b817ab077e7d09c7db55b74\\output\\res\\anim\\design_bottom_sheet_slide_out.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\shake.xml",
+        "source": "F:\\MyProj\\Money Manager svn\\app\\src\\main\\res\\anim\\shake.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_exit.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\4a9ee7c4c0cf4c07f3014027eafce469ba65ee52\\output\\res\\anim\\abc_popup_exit.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_enter.xml",
+        "source": "C:\\Users\\Ashishkumarpolai\\.android\\build-cache\\ae5414787c19070c2e454fa3b224bfba22110387\\output\\res\\anim\\abc_popup_enter.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_snackbar_out.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\afd6caf1f32c0354f592aac2649ed9bce04207e0\\output\\res\\anim\\design_snackbar_out.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\dateanimate.xml",
+        "source": "F:\\MyProj\\New Money Manager Svn\\app\\src\\main\\res\\anim\\dateanimate.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_fab_in.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\afd6caf1f32c0354f592aac2649ed9bce04207e0\\output\\res\\anim\\design_fab_in.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_bottom_sheet_slide_in.xml",
+        "source": "C:\\Users\\Ashishkumarpolai\\.android\\build-cache\\b79941dc269be9a80b817ab077e7d09c7db55b74\\output\\res\\anim\\design_bottom_sheet_slide_in.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\moveup.xml",
+        "source": "F:\\MyProj\\New Money Manager Svn\\app\\src\\main\\res\\anim\\moveup.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_top.xml",
+        "source": "C:\\Users\\Ashishkumarpolai\\.android\\build-cache\\ae5414787c19070c2e454fa3b224bfba22110387\\output\\res\\anim\\abc_slide_out_top.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\blink.xml",
+        "source": "D:\\Money Manager svn\\app\\src\\main\\res\\anim\\blink.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\slide_top_to_bottom.xml",
+        "source": "F:\\MyProj\\New Money Manager Svn\\app\\src\\main\\res\\anim\\slide_top_to_bottom.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\hyperspace_out.xml",
+        "source": "F:\\MyProj\\New Money Manager Svn\\app\\src\\main\\res\\anim\\hyperspace_out.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_top.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\4a9ee7c4c0cf4c07f3014027eafce469ba65ee52\\output\\res\\anim\\abc_slide_in_top.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_shrink_fade_out_from_bottom.xml",
+        "source": "C:\\Users\\Ashishkumarpolai\\.android\\build-cache\\ae5414787c19070c2e454fa3b224bfba22110387\\output\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\move_left_in_activity.xml",
+        "source": "F:\\MyProj\\New Money Manager Svn\\app\\src\\main\\res\\anim\\move_left_in_activity.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_fab_out.xml",
+        "source": "C:\\Users\\Ashishkumarpolai\\.android\\build-cache\\b79941dc269be9a80b817ab077e7d09c7db55b74\\output\\res\\anim\\design_fab_out.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\mutiplezoominout.xml",
+        "source": "D:\\Money Manager svn\\app\\src\\main\\res\\anim\\mutiplezoominout.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\wave_scale.xml",
+        "source": "F:\\MyProj\\Money Manager svn\\app\\src\\main\\res\\anim\\wave_scale.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_fab_out.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\afd6caf1f32c0354f592aac2649ed9bce04207e0\\output\\res\\anim\\design_fab_out.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\move_left_out_activity.xml",
+        "source": "D:\\Money Manager svn\\app\\src\\main\\res\\anim\\move_left_out_activity.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\slide_top_to_bottom.xml",
+        "source": "D:\\Money Manager svn\\app\\src\\main\\res\\anim\\slide_top_to_bottom.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_bottom.xml",
+        "source": "C:\\Users\\Ashishkumarpolai\\.android\\build-cache\\ae5414787c19070c2e454fa3b224bfba22110387\\output\\res\\anim\\abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\hyperspace_in.xml",
+        "source": "D:\\Money Manager svn\\app\\src\\main\\res\\anim\\hyperspace_in.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_exit.xml",
+        "source": "C:\\Users\\Ashishkumarpolai\\.android\\build-cache\\ae5414787c19070c2e454fa3b224bfba22110387\\output\\res\\anim\\abc_popup_exit.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\dateanimate.xml",
+        "source": "F:\\MyProj\\Money Manager svn\\app\\src\\main\\res\\anim\\dateanimate.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\wave_scale.xml",
+        "source": "D:\\Money Manager svn\\app\\src\\main\\res\\anim\\wave_scale.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\cycle.xml",
+        "source": "F:\\MyProj\\New Money Manager Svn\\app\\src\\main\\res\\anim\\cycle.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\animateslider.xml",
+        "source": "F:\\MyProj\\New Money Manager Svn\\app\\src\\main\\res\\anim\\animateslider.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_shrink_fade_out_from_bottom.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\4a9ee7c4c0cf4c07f3014027eafce469ba65ee52\\output\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_out.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\4a9ee7c4c0cf4c07f3014027eafce469ba65ee52\\output\\res\\anim\\abc_fade_out.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\blink.xml",
+        "source": "F:\\MyProj\\Money Manager svn\\app\\src\\main\\res\\anim\\blink.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_snackbar_out.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\afd6caf1f32c0354f592aac2649ed9bce04207e0\\output\\res\\anim\\design_snackbar_out.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\mutiplezoominout.xml",
+        "source": "F:\\MyProj\\Money Manager svn\\app\\src\\main\\res\\anim\\mutiplezoominout.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_in.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\4a9ee7c4c0cf4c07f3014027eafce469ba65ee52\\output\\res\\anim\\abc_fade_in.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\blink.xml",
+        "source": "F:\\MyProj\\New Money Manager Svn\\app\\src\\main\\res\\anim\\blink.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\hyperspace_in.xml",
+        "source": "F:\\MyProj\\Money Manager svn\\app\\src\\main\\res\\anim\\hyperspace_in.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_shrink_fade_out_from_bottom.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\4a9ee7c4c0cf4c07f3014027eafce469ba65ee52\\output\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_top.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\4a9ee7c4c0cf4c07f3014027eafce469ba65ee52\\output\\res\\anim\\abc_slide_out_top.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_bottom.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\4a9ee7c4c0cf4c07f3014027eafce469ba65ee52\\output\\res\\anim\\abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\movedown.xml",
+        "source": "F:\\MyProj\\New Money Manager Svn\\app\\src\\main\\res\\anim\\movedown.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\move_right_in_activity.xml",
+        "source": "D:\\Money Manager svn\\app\\src\\main\\res\\anim\\move_right_in_activity.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\movedown.xml",
+        "source": "D:\\Money Manager svn\\app\\src\\main\\res\\anim\\movedown.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\slide_top_to_bottom.xml",
+        "source": "F:\\MyProj\\Money Manager svn\\app\\src\\main\\res\\anim\\slide_top_to_bottom.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_top.xml",
+        "source": "C:\\Users\\Ashishkumarpolai\\.android\\build-cache\\ae5414787c19070c2e454fa3b224bfba22110387\\output\\res\\anim\\abc_slide_in_top.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\hyperspace_in.xml",
+        "source": "F:\\MyProj\\New Money Manager Svn\\app\\src\\main\\res\\anim\\hyperspace_in.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\moveup.xml",
+        "source": "D:\\Money Manager svn\\app\\src\\main\\res\\anim\\moveup.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_in.xml",
+        "source": "C:\\Users\\Ashishkumarpolai\\.android\\build-cache\\ae5414787c19070c2e454fa3b224bfba22110387\\output\\res\\anim\\abc_fade_in.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\animateslider.xml",
+        "source": "D:\\Money Manager svn\\app\\src\\main\\res\\anim\\animateslider.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\shake.xml",
+        "source": "D:\\Money Manager svn\\app\\src\\main\\res\\anim\\shake.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\cycle.xml",
+        "source": "F:\\MyProj\\Money Manager svn\\app\\src\\main\\res\\anim\\cycle.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\shake.xml",
+        "source": "F:\\MyProj\\New Money Manager Svn\\app\\src\\main\\res\\anim\\shake.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_snackbar_in.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\afd6caf1f32c0354f592aac2649ed9bce04207e0\\output\\res\\anim\\design_snackbar_in.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_grow_fade_in_from_bottom.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\4a9ee7c4c0cf4c07f3014027eafce469ba65ee52\\output\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\hyperspace_out.xml",
+        "source": "F:\\MyProj\\Money Manager svn\\app\\src\\main\\res\\anim\\hyperspace_out.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\dateanimate.xml",
+        "source": "D:\\Money Manager svn\\app\\src\\main\\res\\anim\\dateanimate.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_fab_out.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\afd6caf1f32c0354f592aac2649ed9bce04207e0\\output\\res\\anim\\design_fab_out.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_bottom.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\4a9ee7c4c0cf4c07f3014027eafce469ba65ee52\\output\\res\\anim\\abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_fab_in.xml",
+        "source": "C:\\Users\\Ashishkumarpolai\\.android\\build-cache\\b79941dc269be9a80b817ab077e7d09c7db55b74\\output\\res\\anim\\design_fab_in.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\move_left_out_activity.xml",
+        "source": "F:\\MyProj\\New Money Manager Svn\\app\\src\\main\\res\\anim\\move_left_out_activity.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_enter.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\4a9ee7c4c0cf4c07f3014027eafce469ba65ee52\\output\\res\\anim\\abc_popup_enter.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_bottom_sheet_slide_in.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\afd6caf1f32c0354f592aac2649ed9bce04207e0\\output\\res\\anim\\design_bottom_sheet_slide_in.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\move_right_in_activity.xml",
+        "source": "F:\\MyProj\\New Money Manager Svn\\app\\src\\main\\res\\anim\\move_right_in_activity.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\move_right_out_activity.xml",
+        "source": "F:\\MyProj\\New Money Manager Svn\\app\\src\\main\\res\\anim\\move_right_out_activity.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\move_right_out_activity.xml",
+        "source": "F:\\MyProj\\Money Manager svn\\app\\src\\main\\res\\anim\\move_right_out_activity.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\move_right_out_activity.xml",
+        "source": "D:\\Money Manager svn\\app\\src\\main\\res\\anim\\move_right_out_activity.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_bottom_sheet_slide_out.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\afd6caf1f32c0354f592aac2649ed9bce04207e0\\output\\res\\anim\\design_bottom_sheet_slide_out.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_bottom_sheet_slide_out.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\afd6caf1f32c0354f592aac2649ed9bce04207e0\\output\\res\\anim\\design_bottom_sheet_slide_out.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\move_right_in_activity.xml",
+        "source": "F:\\MyProj\\Money Manager svn\\app\\src\\main\\res\\anim\\move_right_in_activity.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_enter.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\4a9ee7c4c0cf4c07f3014027eafce469ba65ee52\\output\\res\\anim\\abc_popup_enter.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_exit.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\4a9ee7c4c0cf4c07f3014027eafce469ba65ee52\\output\\res\\anim\\abc_popup_exit.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_grow_fade_in_from_bottom.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\4a9ee7c4c0cf4c07f3014027eafce469ba65ee52\\output\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_fab_in.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\afd6caf1f32c0354f592aac2649ed9bce04207e0\\output\\res\\anim\\design_fab_in.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\mutiplezoominout.xml",
+        "source": "F:\\MyProj\\New Money Manager Svn\\app\\src\\main\\res\\anim\\mutiplezoominout.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_out.xml",
+        "source": "C:\\Users\\Ashishkumarpolai\\.android\\build-cache\\ae5414787c19070c2e454fa3b224bfba22110387\\output\\res\\anim\\abc_fade_out.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\move_left_in_activity.xml",
+        "source": "F:\\MyProj\\Money Manager svn\\app\\src\\main\\res\\anim\\move_left_in_activity.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\move_left_out_activity.xml",
+        "source": "F:\\MyProj\\Money Manager svn\\app\\src\\main\\res\\anim\\move_left_out_activity.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\hyperspace_out.xml",
+        "source": "D:\\Money Manager svn\\app\\src\\main\\res\\anim\\hyperspace_out.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_top.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\4a9ee7c4c0cf4c07f3014027eafce469ba65ee52\\output\\res\\anim\\abc_slide_out_top.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\wave_scale.xml",
+        "source": "F:\\MyProj\\New Money Manager Svn\\app\\src\\main\\res\\anim\\wave_scale.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_top.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\4a9ee7c4c0cf4c07f3014027eafce469ba65ee52\\output\\res\\anim\\abc_slide_in_top.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_snackbar_out.xml",
+        "source": "C:\\Users\\Ashishkumarpolai\\.android\\build-cache\\b79941dc269be9a80b817ab077e7d09c7db55b74\\output\\res\\anim\\design_snackbar_out.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_bottom.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\4a9ee7c4c0cf4c07f3014027eafce469ba65ee52\\output\\res\\anim\\abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\movedown.xml",
+        "source": "F:\\MyProj\\Money Manager svn\\app\\src\\main\\res\\anim\\movedown.xml"
+    },
+    {
+        "merged": "D:\\Money Manager svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\move_left_in_activity.xml",
+        "source": "D:\\Money Manager svn\\app\\src\\main\\res\\anim\\move_left_in_activity.xml"
+    },
+    {
+        "merged": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_out.xml",
+        "source": "C:\\Users\\Asis\\.android\\build-cache\\4a9ee7c4c0cf4c07f3014027eafce469ba65ee52\\output\\res\\anim\\abc_fade_out.xml"
+    }
+]

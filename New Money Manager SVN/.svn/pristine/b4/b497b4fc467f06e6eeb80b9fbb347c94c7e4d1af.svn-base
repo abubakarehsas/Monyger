@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/category_gradient_border_primary" >
+
+    <TextView
+        android:id="@+id/txt_appName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_25"
+        android:layout_marginBottom="10dp"
+        android:textStyle="italic"
+        android:textSize="@dimen/size_30"
+        android:textColor="@color/White"
+        android:gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:text="Money Manager" />
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/moneycredit" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:textSize="12dp"
+        android:textColor="@color/White"
+        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:text="www.asisdroid.com" />
+
+</RelativeLayout>

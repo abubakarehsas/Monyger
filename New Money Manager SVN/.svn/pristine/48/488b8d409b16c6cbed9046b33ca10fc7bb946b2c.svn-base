@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/otheroptions"
+        android:title="otheroptions"
+        android:icon="@mipmap/menuoptions"
+        app:showAsAction="always"
+        android:orderInCategory="4"
+        tools:ignore="AppCompatResource">
+            <!-- "file" submenu -->
+            <menu>
+
+                <item android:id="@+id/addexpenseremainder"
+                    android:title="@string/remind_expense"
+                    android:checkable="true"
+                    android:icon="@mipmap/addexpenseremainder"
+                    />
+                <item android:id="@+id/help"
+                    android:title="@string/help"
+                    android:icon="@mipmap/help"
+                    />
+
+            </menu>
+    </item>
+
+    <item
+        android:id="@+id/moreoptions"
+        android:title="@string/options"
+        android:icon="@mipmap/calendarsettings"
+        app:showAsAction="always"
+        tools:ignore="AppCompatResource"
+        android:orderInCategory="3"
+        />
+
+    <item
+        android:id="@+id/remainders"
+        android:title="@string/remainder"
+        android:icon="@mipmap/alertoff"
+        app:showAsAction="always"
+        android:orderInCategory="2"
+        tools:ignore="AppCompatResource"/>
+
+    <item
+        android:id="@+id/saveData"
+        android:visible="false"
+        android:orderInCategory="1"
+        android:title="@string/saveAmount"
+        app:showAsAction="always"
+        tools:ignore="AppCompatResource"/>
+
+    <!--<item
+        android:id="@+id/actionToggleValues"
+        android:title="Toggle Y-Values">
+    </item>
+    <item
+        android:id="@+id/actionToggleIcons"
+        android:title="Toggle Icons">
+    </item>
+    <item
+        android:id="@+id/actionToggleXVals"
+        android:title="Toggle X-Values">
+    </item>
+    <item
+        android:id="@+id/actionTogglePercent"
+        android:title="Toggle Percent">
+    </item>
+    <item
+        android:id="@+id/actionToggleHole"
+        android:title="Toggle Hole">
+    </item>
+    <item
+        android:id="@+id/animateX"
+        android:title="Animate X">
+    </item>
+    <item
+        android:id="@+id/animateY"
+        android:title="Animate Y">
+    </item>
+    <item
+        android:id="@+id/animateXY"
+        android:title="Animate XY">
+    </item>
+    <item
+        android:id="@+id/actionDrawCenter"
+        android:title="Draw CenterText">
+    </item>
+    <item
+        android:id="@+id/actionSave"
+        android:title="Save to Gallery">
+    </item>
+    <item
+        android:id="@+id/actionToggleSpin"
+        android:title="Spin Animation">
+    </item>-->
+
+</menu>

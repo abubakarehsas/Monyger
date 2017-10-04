@@ -1,0 +1,197 @@
+package com.asisdroid.moneymanager.database;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+
+public class AccountDBAdapter extends SQLiteOpenHelper {
+    static final String DATABASE_NAME = "accountdetails.db";
+    static final int DATABASE_VERSION = 1;
+    public static final int NAME_COLUMN = 1;
+    // TODO: Create public field for each column in your table.
+    // SQL Statement to create a new database.
+    static final String DATABASE_CREATE = "create table " + "INCOME_ACCOUNT_DETAILS" +
+            "(ID text, NAME text, SHARE text, PAID text, GIVEORTAKE text, CLEARORNOT text)";
+    // Variable to hold the database instance
+    public SQLiteDatabase db;
+    // Context of the application using the database.
+    // Database open/upgrade helper
+
+    public AccountDBAdapter(Context _context) {
+        super(_context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        // TODO Auto-generated method stub
+        db.execSQL(DATABASE_CREATE);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        // TODO Auto-generated method stub
+        db.execSQL("DROP TABLE IF EXISTS ACCOUNT_DETAILS");
+        onCreate(db);
+    }
+
+    public AccountDBAdapter open() throws SQLException {
+        db = this.getWritableDatabase();
+        return this;
+    }
+
+    public void close() {
+        db.close();
+    }
+
+    public SQLiteDatabase getDatabaseInstance() {
+        return db;
+    }
+
+    public void insertAccData(String id, String name, String share, String paid, String giveortake, String clear) {
+
+        ContentValues newValues = new ContentValues();
+        // Assign values for each row.
+        newValues.put("ID", id);
+        newValues.put("NAME", name);
+        newValues.put("SHARE", share);
+        newValues.put("PAID", paid);
+        newValues.put("GIVEORTAKE", giveortake);
+        newValues.put("CLEARORNOT", clear);
+        // Insert the row into your table
+        db.insert("ACCOUNT_DETAILS", null, newValues);
+        ///Toast.makeText(context, "Reminder Is Successfully Saved", Toast.LENGTH_LONG).show();
+
+    }
+
+    public int deleteAllAccDatas() {
+        int numberOFEntriesDeleted = db.delete("ACCOUNT_DETAILS", null, null);
+        // Toast.makeText(context, "Number fo Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
+        return numberOFEntriesDeleted;
+    }
+
+
+    public String GetDue(String id) {
+        String due="";
+        Cursor res = db.query("ACCOUNT_DETAILS", new String[]{"GIVEORTAKE"}, "ID=?", new String[]{id}, null, null, null);
+        if( res != null && res.moveToFirst() ) {
+            due = res.getString(res.getColumnIndex("GIVEORTAKE"));
+        }
+        return due;
+    }
+
+    public ArrayList<String> getAllAccountDetails() {
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        //hp = new HashMap();
+
+        Cursor res = db.query("ACCOUNT_DETAILS", new String[]{"ID","NAME","SHARE","PAID","GIVEORTAKE"}, null, null, null, null, "NAME DESC");
+        String giveortake;
+        if( res != null && res.moveToFirst() ) {
+            while (res.isAfterLast() == false) {
+                if(res.getString(res.getColumnIndex("GIVEORTAKE")).contains("-"))
+                giveortake="( Give )";
+                else
+                giveortake="( Take )";
+                array_list.add("Name  -  "+res.getString(res.getColumnIndex("NAME")).toUpperCase()+"\nShares  -   Rs "+res.getString(res.getColumnIndex("SHARE"))+"\nPaid   -   Rs "
+                +res.getString(res.getColumnIndex("PAID"))+"\nDue   -   Rs "+res.getString(res.getColumnIndex("GIVEORTAKE"))+" "+giveortake.toUpperCase());
+                res.moveToNext();
+            }}
+        return array_list;
+    }
+
+    public ArrayList<String> getAllAccountId() {
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        //hp = new HashMap();
+
+        Cursor res = db.query("ACCOUNT_DETAILS", new String[]{"ID"}, null, null, null, null, "NAME DESC");
+
+        if( res != null && res.moveToFirst() ) {
+            while (res.isAfterLast() == false) {
+                array_list.add(res.getString(res.getColumnIndex("ID")));
+                res.moveToNext();
+            }}
+        return array_list;
+    }
+
+    public ArrayList<String> getAllAccountName() {
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        //hp = new HashMap();
+
+        Cursor res = db.query("ACCOUNT_DETAILS", new String[]{"NAME"}, null, null, null, null, "NAME DESC");
+
+        if( res != null && res.moveToFirst() ) {
+            while (res.isAfterLast() == false) {
+                array_list.add(res.getString(res.getColumnIndex("NAME")));
+                res.moveToNext();
+            }}
+        return array_list;
+    }
+
+    public ArrayList<String> getAllAccountShares() {
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        //hp = new HashMap();
+
+        Cursor res = db.query("ACCOUNT_DETAILS", new String[]{"SHARE"}, null, null, null, null, "NAME DESC");
+
+        if( res != null && res.moveToFirst() ) {
+            while (res.isAfterLast() == false) {
+                array_list.add(res.getString(res.getColumnIndex("SHARE")));
+                res.moveToNext();
+            }}
+        return array_list;
+    }
+
+    public ArrayList<String> getAllAccountPaid() {
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        //hp = new HashMap();
+
+        Cursor res = db.query("ACCOUNT_DETAILS", new String[]{"PAID"}, null, null, null, null, "NAME DESC");
+
+        if( res != null && res.moveToFirst() ) {
+            while (res.isAfterLast() == false) {
+                array_list.add(res.getString(res.getColumnIndex("PAID")));
+                res.moveToNext();
+            }}
+        return array_list;
+    }
+
+    public ArrayList<String> getAllAccountgiveortake() {
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        //hp = new HashMap();
+
+        Cursor res = db.query("ACCOUNT_DETAILS", new String[]{"GIVEORTAKE"}, null, null, null, null, "NAME DESC");
+
+        if( res != null && res.moveToFirst() ) {
+            while (res.isAfterLast() == false) {
+                array_list.add(res.getString(res.getColumnIndex("GIVEORTAKE")));
+                res.moveToNext();
+            }}
+        return array_list;
+    }
+
+    public ArrayList<String> getAllAccountClearornot() {
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        //hp = new HashMap();
+
+        Cursor res = db.query("ACCOUNT_DETAILS", new String[]{"CLEARORNOT"}, null, null, null, null, "NAME DESC");
+
+        if( res != null && res.moveToFirst() ) {
+            while (res.isAfterLast() == false) {
+                array_list.add(res.getString(res.getColumnIndex("CLEARORNOT")));
+                res.moveToNext();
+            }}
+        return array_list;
+    }
+}
+

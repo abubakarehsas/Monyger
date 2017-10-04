@@ -1,0 +1,134 @@
+package com.asisdroid.moneymanager;
+
+/**
+ * Created by ashishkumarpolai on 8/18/2017.
+ */
+
+import java.util.HashMap;
+import java.util.List;
+
+import android.content.Context;
+import android.graphics.Typeface;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseExpandableListAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class ListViewCustomAdapter extends BaseExpandableListAdapter {
+
+    private Context _context;
+    private List<String> _listDataHeader; // header titles
+    private HashMap<String,Integer> catgAllDrawableHashmap = new HashMap<String, Integer>();
+    // child data in format of header title, child title
+    private HashMap<String, List<String>> _listDataChild;
+
+    public ListViewCustomAdapter(Context context, List<String> listDataHeader,
+                                 HashMap<String, List<String>> listChildData) {
+        this._context = context;
+        this._listDataHeader = listDataHeader;
+        this._listDataChild = listChildData;
+        if(catgAllDrawableHashmap.size()==0) {
+            catgAllDrawableHashmap.put("Food", R.drawable.catg_food);
+            catgAllDrawableHashmap.put("Travel", R.drawable.catg_transport);
+            catgAllDrawableHashmap.put("Bill", R.drawable.catg_bill);
+            catgAllDrawableHashmap.put("Car and bike", R.drawable.catg_carandbike);
+            catgAllDrawableHashmap.put("Cloth", R.drawable.catg_clothes);
+            catgAllDrawableHashmap.put("Eat Out", R.drawable.catg_eatout);
+            catgAllDrawableHashmap.put("Phone", R.drawable.catg_phone);
+            catgAllDrawableHashmap.put("Entertain", R.drawable.catg_entertainment);
+            catgAllDrawableHashmap.put("Rent", R.drawable.catg_rental);
+            catgAllDrawableHashmap.put("Gift", R.drawable.catg_gift);
+            catgAllDrawableHashmap.put("Health", R.drawable.catg_health);
+            catgAllDrawableHashmap.put("Pet", R.drawable.catg_pet);
+            catgAllDrawableHashmap.put("Electronics", R.drawable.catg_electronics);
+            catgAllDrawableHashmap.put("Sports", R.drawable.catg_sports);
+            catgAllDrawableHashmap.put("Saving", R.drawable.catg_saving);
+            catgAllDrawableHashmap.put("Income Tax", R.drawable.catg_tax);
+            catgAllDrawableHashmap.put("Salary", R.drawable.catg_salary);
+            catgAllDrawableHashmap.put("Home Rent", R.drawable.catg_homerent);
+        }
+    }
+
+    @Override
+    public Object getChild(int groupPosition, int childPosititon) {
+        return this._listDataChild.get(this._listDataHeader.get(groupPosition))
+                .get(childPosititon);
+    }
+
+    @Override
+    public long getChildId(int groupPosition, int childPosition) {
+        return childPosition;
+    }
+
+    @Override
+    public View getChildView(int groupPosition, final int childPosition,
+                             boolean isLastChild, View convertView, ViewGroup parent) {
+
+        final String childText = (String) getChild(groupPosition, childPosition);
+
+        if (convertView == null) {
+            LayoutInflater infalInflater = (LayoutInflater) this._context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = infalInflater.inflate(R.layout.list_item, null);
+        }
+
+        TextView txtListChild = (TextView) convertView
+                .findViewById(R.id.lblListItem);
+
+        txtListChild.setText(childText);
+        return convertView;
+    }
+
+    @Override
+    public int getChildrenCount(int groupPosition) {
+        return this._listDataChild.get(this._listDataHeader.get(groupPosition))
+                .size();
+    }
+
+    @Override
+    public Object getGroup(int groupPosition) {
+        return this._listDataHeader.get(groupPosition);
+    }
+
+    @Override
+    public int getGroupCount() {
+        return this._listDataHeader.size();
+    }
+
+    @Override
+    public long getGroupId(int groupPosition) {
+        return groupPosition;
+    }
+
+    @Override
+    public View getGroupView(int groupPosition, boolean isExpanded,
+                             View convertView, ViewGroup parent) {
+        String headerTitle = (String) getGroup(groupPosition);
+        if (convertView == null) {
+            LayoutInflater infalInflater = (LayoutInflater) this._context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = infalInflater.inflate(R.layout.list_group, null);
+        }
+
+        TextView lblListHeader = (TextView) convertView
+                .findViewById(R.id.lblListHeader);
+        lblListHeader.setTypeface(null, Typeface.BOLD);
+        lblListHeader.setText(headerTitle.toUpperCase());
+        lblListHeader.setCompoundDrawablesWithIntrinsicBounds(null,null,MoneyManagerApplication.getInstance().getResources().getDrawable(catgAllDrawableHashmap.get(headerTitle)),null);
+
+        return convertView;
+    }
+
+    @Override
+    public boolean hasStableIds() {
+        return false;
+    }
+
+    @Override
+    public boolean isChildSelectable(int groupPosition, int childPosition) {
+        return true;
+    }
+
+}

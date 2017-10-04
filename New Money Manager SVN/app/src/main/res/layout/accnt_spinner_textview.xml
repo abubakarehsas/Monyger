@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/Test"
+        android:textColor="@color/Black"
+        android:textSize="@dimen/fontsize_12"
+        android:gravity="center"
+        android:textAllCaps="true"
+        android:padding="@dimen/size_6"
+        android:textStyle="bold"
+        android:shadowColor="@color/colorPrimaryDark"
+        android:shadowDx="1"
+        android:shadowDy="3"
+        android:shadowRadius="2"
+        android:drawableRight="@mipmap/dropdown"
+
+        />
+
+
+

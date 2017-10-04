@@ -1,0 +1,69 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:padding="@dimen/size_8"
+    android:background="@drawable/calculator_onlyborder_gradient"
+    tools:context=".MainActivity"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/addexpenseremainder"
+        android:textSize="@dimen/fontsize_15"
+        android:textStyle="bold"
+        android:text="@string/remind_expense"
+        android:id="@+id/txt_remindMeHead"
+        android:shadowDy="5"
+        android:shadowDx="5"
+        android:shadowColor="@color/colorPrimaryDark"
+        android:shadowRadius="10"
+        android:layout_margin="@dimen/size_3"
+        android:layout_alignParentTop="true"
+        />
+
+    <TextView
+        android:id="@+id/txt_RemindMeLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_remindMeHead"
+        android:layout_margin="@dimen/size_8"
+        android:text="Remind me everyday by 10 PM to add my expenses."
+        android:textSize="@dimen/fontsize_14"
+        android:textStyle="normal"
+        android:textColor="@color/Black"
+        />
+
+    <Button
+        android:id="@+id/btnRemindMeCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_RemindMeLabel"
+        android:background="@color/DarkSeaGreen"
+        android:layout_alignParentLeft="true"
+        android:paddingRight="@dimen/size_6"
+        android:paddingLeft="@dimen/size_6"
+        android:text="Cancel Reminder"
+        android:textColor="@color/White"
+        android:textStyle="italic"
+        android:layout_marginLeft="@dimen/size_8"
+        android:layout_marginTop="@dimen/size_8"
+        android:layout_marginBottom="@dimen/size_8"
+        />
+
+    <Button
+        android:id="@+id/btnRemindMeOk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_RemindMeLabel"
+        android:background="@color/DarkSeaGreen"
+        android:layout_toRightOf="@+id/btnRemindMeCancel"
+        android:text="Remind"
+        android:textColor="@color/White"
+        android:textStyle="italic"
+        android:layout_marginLeft="@dimen/size_8"
+        android:layout_marginRight="@dimen/size_8"
+        android:layout_marginTop="@dimen/size_8"
+        android:layout_marginBottom="@dimen/size_8"
+        />
+</RelativeLayout>

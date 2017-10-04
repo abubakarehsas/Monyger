@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Money Manager</string>
+    <string name="action_settings">Settings</string>
+    <string name="addcredittext">Add Income</string>
+    <string name="adddebittext">Add Expense</string>
+    <string name="checkBalance">Balance = ₹ 0.00</string>
+    <string name="options">Options</string>
+    <string name="saveAmount">SAVE</string>
+
+    <string name="red_color">#FF0000</string>
+    <string name="green_color">#8FBC8F</string>
+    <string name="orange_color">#F4A460</string>
+    <string name="violet_color">#008080</string>
+
+    <!--INCOME CATGEORY-->
+    <string name="catg_salary">Salary</string>
+   <string name="catg_homerent">Home Rent</string>
+
+
+    <!--EXPENSE CATEGORY-->
+    <string name="catg_food">Food</string>
+    <string name="catg_transport">Travel</string>
+    <string name="catg_bill">Bills</string>
+    <string name="catg_carandbike">Car and Bike</string>
+    <string name="catg_clothes">Cloth</string>
+    <string name="catg_eatout">Eat out</string>
+    <string name="catg_phone">Phone</string>
+    <string name="catg_entertainment">Entertain</string>
+    <string name="catg_rental">Rent</string>
+    <string name="catg_gift">Gift</string>
+    <string name="catg_health">Health</string>
+    <string name="catg_pet">Pet</string>
+    <string name="catg_sports">Sports</string>
+    <string name="catg_electronics">Electronics</string>
+    <string name="catg_saving">Saving</string>
+    <string name="catg_tax">Income Tax</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>F4A460
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="F:\MyProj\Money Manager svn\library\build\intermediates\bundles\default\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.0"
+        sha1="2a6b7ede60a5e8e93668a9616afea5348f74da33">
+        <dex dex="F:\MyProj\Money Manager svn\app\build\intermediates\pre-dexed\debug\classes_e2e004b16b300134f97fe55b0cf722a9200154e2.jar" />
+    </item>
+
+</items>

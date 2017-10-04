@@ -1,0 +1,67 @@
+package com.asisdroid.moneymanager;
+
+import android.support.v7.app.ActionBar;
+import android.graphics.Typeface;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.StyleSpan;
+import android.view.View;
+
+import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
+
+public class HelpActiivty extends AppCompatActivity {
+
+    private  ExpandableRelativeLayout expandableLayout1, expandableLayout2, expandableLayout3, expandableLayout4, expandableLayout5;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_help_actiivty);
+        ActionBar actionBar = getSupportActionBar();
+        //Setting Action bar string and style
+        SpannableString s = new SpannableString("Monyger - Help Me !");
+        s.setSpan(new StyleSpan(Typeface.BOLD_ITALIC), 0, s.length(), 0);
+        actionBar.setTitle(s);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    public void expandableButton1(View view) {
+        expandableLayout1 = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout1);
+        expandableLayout1.toggle();
+        if(expandableLayout1.isExpanded()){
+            expandableLayout1.requestFocus();
+        }
+        // toggle expand and collapse
+    }
+
+    public void expandableButton2(View view) {
+        expandableLayout2 = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout2);
+        expandableLayout2.toggle(); // toggle expand and collapse
+        if(expandableLayout2.isExpanded()){
+            expandableLayout2.requestFocus();
+        }
+    }
+
+    public void expandableButton3(View view) {
+        expandableLayout3 = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout3);
+        expandableLayout3.toggle(); // toggle expand and collapse
+        if(expandableLayout3.isExpanded()){
+            expandableLayout3.requestFocus();
+        }
+    }
+
+    public void expandableButton4(View view) {
+        expandableLayout4 = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout4);
+        expandableLayout4.toggle(); // toggle expand and collapse
+        if(expandableLayout4.isExpanded()){
+            expandableLayout4.requestFocus();
+        }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
+    }
+}

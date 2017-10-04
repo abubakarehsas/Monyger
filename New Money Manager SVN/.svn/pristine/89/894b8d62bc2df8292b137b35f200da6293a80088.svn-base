@@ -1,0 +1,359 @@
+[
+    {
+        "outputFile": "F:\\MyProj\\Money Manager svn\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 103,
+                    "endOffset": 154
+                },
+                "from": {
+                    "file": "F:\\MyProj\\Money Manager svn\\app\\src\\main\\res\\values-w820dp\\values.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 103,
+                        "endOffset": 154
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 159,
+                    "endColumn": 199,
+                    "endOffset": 354
+                },
+                "from": {
+                    "file": "F:\\MyProj\\Money Manager svn\\app\\src\\main\\res\\values-w820dp\\values.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 159,
+                        "endColumn": 199,
+                        "endOffset": 354
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 359,
+                    "endColumn": 436,
+                    "endOffset": 791
+                },
+                "from": {
+                    "file": "F:\\MyProj\\Money Manager svn\\app\\src\\main\\res\\values-w820dp\\values.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 359,
+                        "endColumn": 436,
+                        "endOffset": 791
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 796,
+                    "endColumn": 541,
+                    "endOffset": 1333
+                },
+                "from": {
+                    "file": "F:\\MyProj\\Money Manager svn\\app\\src\\main\\res\\values-w820dp\\values.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 796,
+                        "endColumn": 541,
+                        "endOffset": 1333
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 1338,
+                    "endColumn": 484,
+                    "endOffset": 1818
+                },
+                "from": {
+                    "file": "F:\\MyProj\\Money Manager svn\\app\\src\\main\\res\\values-w820dp\\values.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 1338,
+                        "endColumn": 484,
+                        "endOffset": 1818
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 1823,
+                    "endColumn": 57,
+                    "endOffset": 1876
+                },
+                "from": {
+                    "file": "F:\\MyProj\\Money Manager svn\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 295,
+                        "endColumn": 57,
+                        "endOffset": 348
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "D:\\Money Manager svn\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 103,
+                    "endOffset": 154
+                },
+                "from": {
+                    "file": "D:\\Money Manager svn\\app\\src\\main\\res\\values-w820dp\\values.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 103,
+                        "endOffset": 154
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 159,
+                    "endColumn": 199,
+                    "endOffset": 354
+                },
+                "from": {
+                    "file": "D:\\Money Manager svn\\app\\src\\main\\res\\values-w820dp\\values.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 159,
+                        "endColumn": 199,
+                        "endOffset": 354
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 359,
+                    "endColumn": 436,
+                    "endOffset": 791
+                },
+                "from": {
+                    "file": "D:\\Money Manager svn\\app\\src\\main\\res\\values-w820dp\\values.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 359,
+                        "endColumn": 436,
+                        "endOffset": 791
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 796,
+                    "endColumn": 541,
+                    "endOffset": 1333
+                },
+                "from": {
+                    "file": "D:\\Money Manager svn\\app\\src\\main\\res\\values-w820dp\\values.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 796,
+                        "endColumn": 541,
+                        "endOffset": 1333
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 1338,
+                    "endColumn": 484,
+                    "endOffset": 1818
+                },
+                "from": {
+                    "file": "D:\\Money Manager svn\\app\\src\\main\\res\\values-w820dp\\values.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 1338,
+                        "endColumn": 484,
+                        "endOffset": 1818
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 1823,
+                    "endColumn": 57,
+                    "endOffset": 1876
+                },
+                "from": {
+                    "file": "D:\\Money Manager svn\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 295,
+                        "endColumn": 57,
+                        "endOffset": 348
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "F:\\MyProj\\New Money Manager Svn\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 103,
+                    "endOffset": 154
+                },
+                "from": {
+                    "file": "F:\\MyProj\\New Money Manager Svn\\app\\src\\main\\res\\values-w820dp\\values.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 103,
+                        "endOffset": 154
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 159,
+                    "endColumn": 199,
+                    "endOffset": 354
+                },
+                "from": {
+                    "file": "F:\\MyProj\\New Money Manager Svn\\app\\src\\main\\res\\values-w820dp\\values.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 159,
+                        "endColumn": 199,
+                        "endOffset": 354
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 359,
+                    "endColumn": 436,
+                    "endOffset": 791
+                },
+                "from": {
+                    "file": "F:\\MyProj\\New Money Manager Svn\\app\\src\\main\\res\\values-w820dp\\values.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 359,
+                        "endColumn": 436,
+                        "endOffset": 791
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 796,
+                    "endColumn": 541,
+                    "endOffset": 1333
+                },
+                "from": {
+                    "file": "F:\\MyProj\\New Money Manager Svn\\app\\src\\main\\res\\values-w820dp\\values.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 796,
+                        "endColumn": 541,
+                        "endOffset": 1333
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 1338,
+                    "endColumn": 484,
+                    "endOffset": 1818
+                },
+                "from": {
+                    "file": "F:\\MyProj\\New Money Manager Svn\\app\\src\\main\\res\\values-w820dp\\values.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 1338,
+                        "endColumn": 484,
+                        "endOffset": 1818
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 1823,
+                    "endColumn": 57,
+                    "endOffset": 1876
+                },
+                "from": {
+                    "file": "F:\\MyProj\\New Money Manager Svn\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 295,
+                        "endColumn": 57,
+                        "endOffset": 348
+                    }
+                }
+            }
+        ]
+    }
+]

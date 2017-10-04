@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:id="@+id/txtSpinner"
+        android:padding="@dimen/size_10"
+        android:layout_centerHorizontal="true"
+        android:textStyle="italic"
+        android:paddingTop="@dimen/size_10"
+        android:paddingBottom="@dimen/size_10"
+        android:paddingLeft="@dimen/fontsize_20"
+        android:paddingRight="@dimen/size_3"
+        android:drawableLeft="@mipmap/paymenttype"
+        android:drawablePadding="@dimen/size_8"
+        android:textColor="@color/colorPrimaryDark"
+        />
+
+
+

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="D:\New Money Manager SVN\library\src\main\assets"/><source path="D:\New Money Manager SVN\library\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="D:\New Money Manager SVN\library\src\release\assets"/></dataSet></merger>

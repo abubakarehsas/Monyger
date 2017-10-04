@@ -1,0 +1,79 @@
+package com.asisdroid.moneymanager.utility;
+
+import android.app.AlarmManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.support.v7.app.NotificationCompat;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.asisdroid.moneymanager.MainActivity;
+import com.asisdroid.moneymanager.R;
+import com.asisdroid.moneymanager.database.ExpenseAccountDBAdapter;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+
+import static android.content.Context.ALARM_SERVICE;
+import static android.content.Context.BATTERY_SERVICE;
+
+/**
+ * Created by ashishkumarpolai on 9/18/2017.
+ */
+
+public class AlarmreceiverOnReboot extends BroadcastReceiver {
+    Context thisContext ;
+    private SharedPreferences remainderType;
+    private Calendar cal= Calendar.getInstance();
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        thisContext = context;
+        remainderType = thisContext.getSharedPreferences("remainderData", Context.MODE_PRIVATE);
+        if(remainderType.getAll().size()!=0 && (!(remainderType.getString("alertType","noalert").equalsIgnoreCase("noalert")))) {
+            startAlarmOnReboot(remainderType.getString("alertType", "noalert"), remainderType.getString("alertTime", "0:0:0"));
+        }
+        Log.d("asisi", "Alarmstarton reboot event");
+    }
+
+    public void startAlarmOnReboot(String alertCatg, String alertTime){
+        int remainderHour, remainderMin, spinnerIndex, intervalMins = 24;
+        remainderHour = Integer.parseInt(alertTime.split(":")[1]);
+        remainderMin = Integer.parseInt(alertTime.split(":")[2]);
+        spinnerIndex = Integer.parseInt(alertTime.split(":")[0]);
+
+        //SETTING THE TIME INTERVALS
+        if(alertCatg.equalsIgnoreCase("weekly")){
+
+        }
+        else if(alertCatg.equalsIgnoreCase("monthly")){
+
+        }
+
+        if(alertCatg.equalsIgnoreCase("noalert")){
+            Intent intent = new Intent(thisContext, Alarmreceiver.class);
+            PendingIntent pintent = PendingIntent.getBroadcast(thisContext, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+            AlarmManager alarm = (AlarmManager) thisContext.getSystemService(Context.ALARM_SERVICE);
+            alarm.cancel(pintent);
+        }
+        else {
+            //CALLING THE ALARM MANAGER FOR REPEATED NOTIFICATIONS
+            Intent intent = new Intent(thisContext, Alarmreceiver.class);
+            // intent.putExtra("type","day");
+            cal.set(Calendar.HOUR_OF_DAY,remainderHour);
+            cal.set(Calendar.MINUTE,remainderMin);
+            cal.set(Calendar.SECOND,0);
+            PendingIntent pintent = PendingIntent.getBroadcast(thisContext, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+            AlarmManager alarm = (AlarmManager) thisContext.getSystemService(Context.ALARM_SERVICE);
+            alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 60000, pintent);
+        }
+    }
+}

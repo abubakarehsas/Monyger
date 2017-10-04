@@ -1,0 +1,1092 @@
+package com.asisdroid.moneymanager;
+
+import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
+import android.util.Log;
+import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.asisdroid.moneymanager.Dialog.DialogDatepickerFragment;
+import com.asisdroid.moneymanager.database.ExpenseAccountDBAdapter;
+import com.asisdroid.moneymanager.database.IncomeAccountDBAdapter;
+import com.asisdroid.moneymanager.utility.FontUtils;
+import com.asisdroid.moneymanager.utility.MMUtils;
+import com.asisdroid.moneymanager.utility.MoneyManagerPreferences;
+import com.github.mikephil.charting.animation.Easing;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.HorizontalBarChart;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.utils.MPPointF;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.List;
+
+public class MainActivity extends DemoBase implements  OnChartValueSelectedListener, DatePickerDialog.OnDateSetListener, AddAccFragment.OnFragmentInteractionListener {
+
+    private static final String SLIDINGTAG = "AndroidSlidingUpPanel";
+
+    private TextView txtCredit, txtDebit, txtDate, txtCalendar, txtDay, txtMonth, txtWeek, txtYear;
+    private ImageView btnBalanceLeft, btnBalanceRight, connectorLeft, connectorRight;
+    private TextView btnBalanceMid;
+    private FontUtils fontUtils;
+    private PieChart mChart;
+    private HorizontalBarChart mBarChart;
+    private Toolbar toolbar;
+    private static Calendar cal;
+    private ImageView nextData, prevData;
+    public static  MainActivity mainActivityInstance;
+    private LinearLayout expenseDateLayout, bottomLayout;
+    private RelativeLayout slidingBalanceLayout, mainLayout, subLayout;
+    public static boolean isMenuVisibleOrNot = false;
+    private Animation closeMenuAnime, openMenuAnime, fadeInAnime, sliderAnime;
+    private boolean isNextBlocked = true;
+
+    private IncomeAccountDBAdapter incomeAccDb;
+    private ExpenseAccountDBAdapter expenseAccDb;
+
+    private FragmentManager fragmentManager;
+    private FragmentTransaction fragmentTransaction;
+    public AddAccFragment myFragment;
+
+    private ArrayList<String> incomeDataArray, expenseDataArray,  dateOfTransIArray,shortNotesIArray, catgIArray,
+             dateOfTransEArray,shortNotesEArray, paymentTypeEArray, catgEArray;
+
+    private ArrayList<Integer> amountIArray, amountEArray;
+    private int totalIncome = 0, totalExpense = 0;
+
+    private Menu mainMenu;
+
+    private static final String currentViewPreference = "MyPrefs" ;
+    private static final String currentView = "calndrView" ;
+    private static final String DayView = "day" ;
+    private static final String MonthView = "month" ;
+    private static final String YearView = "year" ;
+    private static final String DateView = "date" ;
+    private static final String WeekView = "week" ;
+    public SharedPreferences currentCalndrDisplay;
+
+    protected ListView listOfBalance;
+
+    protected SlidingUpPanelLayout mLayout;
+
+    private MoneyManagerPreferences myPreference;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mainActivityInstance = this;
+        myPreference = MoneyManagerPreferences.getInstance(mainActivityInstance);
+        setContentView(R.layout.activity_main);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        //Setting Action bar string and style
+        SpannableString s = new SpannableString("Money Manager");
+        s.setSpan(new StyleSpan(Typeface.BOLD_ITALIC), 0, s.length(), 0);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(s);
+        //getSupportActionBar().setIcon(R.mipmap.ic_launcher);
+
+        //Calling all initializing functions
+        initMyUI();
+        getDbDatas("default");
+        //initBarCharts();
+        setFonts();
+        setMyEvents();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        mainMenu = menu;
+        if(subLayout.getVisibility() == View.VISIBLE) {
+            mainMenu.getItem(0).setVisible(false);
+            mainMenu.getItem(1).setVisible(true);
+        }
+        else {
+            mainMenu.getItem(1).setVisible(false);
+            mainMenu.getItem(0).setVisible(true);
+        }
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.moreoptions: {
+                if(isMenuVisibleOrNot==true)
+                {
+                    closeTheExpenseDateMenu();
+                }
+                else
+                {
+                    isMenuVisibleOrNot = true;
+                    if(openMenuAnime == null)
+                    {openMenuAnime = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.movedown);}
+                    openMenuAnime.setFillAfter(true);
+                    expenseDateLayout.startAnimation(openMenuAnime);
+                    openMenuAnime.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                            expenseDateLayout.setVisibility(View.VISIBLE);
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+                        }
+                    });
+
+                    //Making the calendar options inactive if it is active
+                    if(isActive(txtCalendar))
+                    {
+                        setInActive(txtCalendar);
+                    }
+
+                    openMenuAnime = null;
+                }
+
+                break;
+            }
+            case R.id.saveData : {
+                //CALL HERE THE FRAGMENT FUNCTION
+                if(myFragment!=null){
+                    myFragment.onSaveAccData();
+                }
+                break;
+            }
+             /* case R.id.actionToggleIcons: {
+                for (IDataSet<?> set : mChart.getData().getDataSets())
+                    set.setDrawIcons(!set.isDrawIconsEnabled());
+
+                mChart.invalidate();
+                break;
+            }
+            case R.id.actionToggleHole: {
+                if (mChart.isDrawHoleEnabled())
+                    mChart.setDrawHoleEnabled(false);
+                else
+                    mChart.setDrawHoleEnabled(true);
+                mChart.invalidate();
+                break;
+            }
+            case R.id.actionDrawCenter: {
+                if (mChart.isDrawCenterTextEnabled())
+                    mChart.setDrawCenterText(false);
+                else
+                    mChart.setDrawCenterText(true);
+                mChart.invalidate();
+                break;
+            }
+            case R.id.actionToggleXVals: {
+
+                mChart.setDrawEntryLabels(!mChart.isDrawEntryLabelsEnabled());
+                mChart.invalidate();
+                break;
+            }
+            case R.id.actionSave: {
+                // mChart.saveToGallery("title"+System.currentTimeMillis());
+                mChart.saveToPath("title" + System.currentTimeMillis(), "");
+                break;
+            }
+            case R.id.actionTogglePercent:
+                mChart.setUsePercentValues(!mChart.isUsePercentValuesEnabled());
+                mChart.invalidate();
+                break;
+            case R.id.animateX: {
+                mChart.animateX(1400);
+                break;
+            }
+            case R.id.animateY: {
+                mChart.animateY(1400);
+                break;
+            }
+            case R.id.animateXY: {
+                mChart.animateXY(1400, 1400);
+                break;
+            }
+            case R.id.actionToggleSpin: {
+                mChart.spin(1000, mChart.getRotationAngle(), mChart.getRotationAngle() + 360, Easing.EasingOption
+                        .EaseInCubic);
+                break;
+            }*/
+        }
+        return true;
+    }
+
+    private void setData(int count, float range) {
+
+        ArrayList<PieEntry> entries = new ArrayList<PieEntry>();
+        float percentage;
+        // NOTE: The order of the entries when being added to the entries array determines their position around the center of
+        // the chart.
+        if(amountEArray.size()>0){
+            for (int i = 0; i < amountEArray.size() ; i++) {
+                percentage = (((float)amountEArray.get(i)/totalExpense)*100);
+                entries.add(new PieEntry(percentage,
+                        catgEArray.get(i),
+                        getResources().getDrawable(R.drawable.star)));
+            }
+        }
+        else{
+            entries.add(new PieEntry(0.0f,
+                    "Nothing",
+                    getResources().getDrawable(R.drawable.star)));
+        }
+
+       /* entries.add(new PieEntry(22.3f,
+                "Food",
+                getResources().getDrawable(R.drawable.catg_food)));
+        entries.add(new PieEntry(45.7f,
+                "Sport",
+                getResources().getDrawable(R.drawable.catg_sports)));
+        entries.add(new PieEntry(26.3f,
+                "Travel",
+                getResources().getDrawable(R.drawable.catg_transport)));
+        entries.add(new PieEntry(5.7f,
+                "Enjoy",
+                getResources().getDrawable(R.drawable.catg_entertainment)));
+        entries.add(new PieEntry(5.7f,
+                "Bills",
+                getResources().getDrawable(R.drawable.catg_bill)));*/
+
+        PieDataSet dataSet = new PieDataSet(entries, "");
+        dataSet.setDrawIcons(true);
+        dataSet.setSliceSpace(3f);
+        dataSet.setIconsOffset(new MPPointF(0, 40));
+        dataSet.setSelectionShift(5f);
+
+        // add a lot of colors
+        ArrayList<Integer> colors = new ArrayList<Integer>();
+
+       /* for (int c : ColorTemplate.VORDIPLOM_COLORS)
+            colors.add(c);
+
+        for (int c : ColorTemplate.JOYFUL_COLORS)
+            colors.add(c);*/
+
+      /*  for (int c : ColorTemplate.COLORFUL_COLORS)
+            colors.add(c);*/
+
+       /* for (int c : ColorTemplate.LIBERTY_COLORS)
+            colors.add(c);
+
+        for (int c : ColorTemplate.PASTEL_COLORS)
+            colors.add(c);*/
+        int[] COLORFUL_COLORS = {
+                Color.rgb(193, 37, 82), Color.rgb(255, 102, 0), Color.rgb(245, 199, 0),
+                Color.rgb(106, 150, 31), Color.rgb(179, 100, 53), Color.rgb(64, 89, 128), Color.rgb(149, 165, 124), Color.rgb(217, 184, 162),
+                Color.rgb(191, 134, 134), Color.rgb(179, 48, 80)
+        };
+        for (int c : COLORFUL_COLORS)
+            colors.add(c);
+
+        colors.add(ColorTemplate.getHoloBlue());
+
+        dataSet.setColors(colors);
+        //dataSet.setSelectionShift(0f);
+
+        PieData data = new PieData(dataSet);
+        data.setValueFormatter(new PercentFormatter());
+        data.setValueTextSize(11f);
+        data.setValueTextColor(Color.BLACK);
+        data.setValueTypeface(gothamBold);
+        mChart.setData(data);
+
+        // undo all highlights
+        mChart.highlightValues(null);
+        mChart.invalidate();
+    }
+
+    private SpannableString generateCenterSpannableText() {
+        SpannableString s = new SpannableString("Expense - ₹ "+totalExpense+"\nIncome - ₹ "+totalIncome);
+        s.setSpan(new RelativeSizeSpan(1.7f), 0, 7, 0);
+        s.setSpan(new RelativeSizeSpan(1.7f), 16, 23, 0);
+        s.setSpan(new StyleSpan(Typeface.ITALIC), s.length() - 6, s.length(), 0);
+        s.setSpan(new StyleSpan(Typeface.ITALIC), 10, 16, 0);
+        s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length() - 6, s.length(), 0);
+        s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), 10, 16, 0);
+        return s;
+    }
+
+    @Override
+    public void onValueSelected(Entry e, Highlight h) {
+        if (e == null) return;
+        if(isMenuVisibleOrNot == false)
+        {
+            mChart.spin(1000, mChart.getRotationAngle(), mChart.getRotationAngle() + 360, Easing.EasingOption.EaseInCubic);
+            //Log.i("VAL SELECTED", "Value: " + e.getY() + ", index: " + h.getX() + ", DataSet index: " + h.getDataSetIndex());
+        }
+        else
+        {
+            closeTheExpenseDateMenu();
+        }
+    }
+
+    @Override
+    public void onNothingSelected() {
+        Log.i("PieChart", "nothing selected");
+    }
+
+    public String getCurrentDateAndTime(int nextVal, boolean resetCalendar)
+    {
+        if(resetCalendar == true)
+        {
+            cal = Calendar.getInstance();
+        }
+        String mydate;
+        SimpleDateFormat formater = new SimpleDateFormat("dd MMMM, EEEE");
+        cal.add(Calendar.DATE, nextVal);
+        return formater.format(cal.getTime());
+    }
+
+    public String getCurrentMonth(int nextVal, boolean resetCalendar)
+    {
+        if(resetCalendar == true)
+        {
+            cal = Calendar.getInstance();
+        }
+        String mydate;
+        SimpleDateFormat formater = new SimpleDateFormat("MMMM yyyy");
+        cal.add(Calendar.MONTH, nextVal);
+        return formater.format(cal.getTime());
+    }
+
+    public String getCurrentYear(int nextVal, boolean resetCalendar)
+    {
+        if(resetCalendar == true)
+        {
+            cal = Calendar.getInstance();
+        }
+        String mydate;
+        SimpleDateFormat formater = new SimpleDateFormat("yyyy");
+        cal.add(Calendar.YEAR, nextVal);
+        return "YEAR - "+formater.format(cal.getTime());
+    }
+
+    public String getCurrentWeekAndDate(int nextVal,boolean resetCalendar)
+    {
+        if(resetCalendar == true)
+        {
+            cal = Calendar.getInstance();
+        }
+        SimpleDateFormat formater = new SimpleDateFormat("dd MMM, yyyy");
+        cal.add(Calendar.WEEK_OF_YEAR,nextVal);
+        cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
+        String week = "Week "+ (cal.get(Calendar.WEEK_OF_YEAR))+"\n("+formater.format(cal.getTime());
+        cal.add(Calendar.DATE, 6);
+        week+=" - "+formater.format(cal.getTime())+")";
+        cal.add(Calendar.DATE, -6);
+        return week;
+    }
+
+    //INITIALIZE ALL UI ELEMENTS
+    public void initMyUI() {
+        txtCredit = (TextView) findViewById(R.id.textCredit);
+        txtDebit = (TextView) findViewById(R.id.textDebit);
+        txtDate = (TextView) findViewById(R.id.textDate);
+
+        //Calendar View Options
+        txtCalendar = (TextView) findViewById(R.id.textCalendar);
+        txtDay = (TextView) findViewById(R.id.textDay);
+        txtMonth = (TextView) findViewById(R.id.textMonth);
+        txtWeek = (TextView) findViewById(R.id.textWeek);
+        txtYear = (TextView) findViewById(R.id.textYear);
+
+        btnBalanceLeft = (ImageView) findViewById(R.id.btnBalanceLeft);
+        btnBalanceRight = (ImageView) findViewById(R.id.btnBalanceRight);
+        btnBalanceMid = (TextView) findViewById(R.id.txtBalance);
+
+        //Setting the background and text color of the selected calendar view
+        //Storing the default value in shared preferences
+        setCurrentCalendarView(DayView);
+
+        nextData = (ImageView) findViewById(R.id.nextMonth);
+        prevData = (ImageView) findViewById(R.id.prevMonth);
+        connectorLeft = (ImageView) findViewById(R.id.connectorLeft);
+        connectorRight = (ImageView) findViewById(R.id.connectorRight);
+
+        cal= Calendar.getInstance();
+
+        txtDate.setText(getCurrentDateAndTime(0,false));
+
+        fontUtils = FontUtils.getInstance(mainActivityInstance);
+
+        expenseDateLayout = (LinearLayout) findViewById(R.id.expenseDateLayout);
+        expenseDateLayout.bringToFront();
+
+        slidingBalanceLayout = (RelativeLayout) findViewById(R.id.layoutBalance);
+        mainLayout = (RelativeLayout) findViewById(R.id.mainLayout);
+        subLayout = (RelativeLayout) findViewById(R.id.subLayout);
+
+        bottomLayout = (LinearLayout) findViewById(R.id.bottomLayout);
+
+        mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
+
+        listOfBalance = (ListView) findViewById(R.id.slidingView);
+
+        List<String> your_array_list = Arrays.asList(
+                "This",
+                "Is",
+                "An",
+                "Example",
+                "ListView",
+                "That",
+                "You",
+                "Can",
+                "Scroll",
+                ".",
+                "It",
+                "Shows",
+                "How",
+                "Any",
+                "Scrollable",
+                "View",
+                "Can",
+                "Be",
+                "Included",
+                "As",
+                "A",
+                "Child",
+                "Of",
+                "SlidingUpPanelLayout"
+        );
+
+        // This is the array adapter, it takes the context of the activity as a
+        // first parameter, the type of list view as a second parameter and your
+        // array as a third parameter.
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(mainActivityInstance, android.R.layout.simple_list_item_1, your_array_list );
+
+        listOfBalance.setAdapter(arrayAdapter);
+
+         MMUtils.startAnimate(btnBalanceMid,R.anim.animateslider,mainActivityInstance);
+      }
+
+    //STORE THE TYPE OF CALENDAR VIEW IN SHARED PREFERENCES
+    public void setCurrentCalendarView(String currentViewData)
+    {
+        String prevView = myPreference.getCurrentDateView();
+        if(prevView != currentViewData) {
+            if(prevView.equalsIgnoreCase(DayView) || prevView.equalsIgnoreCase("")) {
+                setInActive(txtDay);
+            }
+            else
+            if(prevView.equalsIgnoreCase(MonthView)) {
+                setInActive(txtMonth);
+            }
+            else
+            if(prevView.equalsIgnoreCase(YearView)) {
+                setInActive(txtYear);
+            }
+            else
+            if(prevView.equalsIgnoreCase(WeekView)) {
+                setInActive(txtWeek);
+            }
+            else
+            if(prevView.equalsIgnoreCase(DateView)) {
+                setInActive(txtCalendar);
+            }
+
+            myPreference.setCurrentDateView(currentViewData);
+
+            //For removing the default calendar view i.e. day , in case it is not removed due to slow execution issues
+            if(isActive(txtDay)) {
+                setInActive(txtDay);
+            }
+
+            if(currentViewData.equalsIgnoreCase(DayView)) {
+                setActive(txtDay);
+            }
+            else
+            if(currentViewData.equalsIgnoreCase(MonthView)) {
+                setActive(txtMonth);
+            }
+            else
+            if(currentViewData.equalsIgnoreCase(YearView)) {
+                setActive(txtYear);
+            }
+            else
+            if(currentViewData.equalsIgnoreCase(WeekView)) {
+                setActive(txtWeek);
+            }
+            else
+            if(currentViewData.equalsIgnoreCase(DateView)) {
+                setActive(txtCalendar);
+            }
+        }
+    }
+
+    //SET THE VIEW ACTIVE BY CHANGING THE BACKGROUND AND TEXT COLOR
+    public void setActive(TextView targetActive)
+    {
+        targetActive.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+        targetActive.setTextColor(getResources().getColor(R.color.White));
+    }
+
+    //CHECK THE VIEW IS ACTIVE OR NOT
+    public boolean isActive(TextView targetCheck)
+    {
+        if(targetCheck.getCurrentTextColor() == getResources().getColor(R.color.White))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    //SET THE VIEW NON-ACTIVE BY CHANGING THE BACKGROUND AND TEXT COLOR
+    public void setInActive(TextView targetInactive)
+    {
+        targetInactive.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+        targetInactive.setTextColor(getResources().getColor(R.color.Black));
+    }
+
+    //CHECK THE SELECTED DATE REACHED CURRENT DATE OR NOT
+    public void hasNotReachedCurrentDate()
+    {
+        if(myPreference.getCurrentDateView().equalsIgnoreCase(DayView)) {
+            SimpleDateFormat formatr = new SimpleDateFormat("ddMMyyyy");
+            String formattedSelectedDate = formatr.format(cal.getTime()).toString();
+            String formattedCurrentDate = formatr.format(Calendar.getInstance().getTime()).toString();
+            if(Integer.parseInt(formattedSelectedDate.substring(2)) >= Integer.parseInt(formattedCurrentDate.substring(2))) {
+                if(Integer.parseInt(formattedSelectedDate.substring(2)) == Integer.parseInt(formattedCurrentDate.substring(2))) {
+                    if(Integer.parseInt(formattedSelectedDate.substring(0,2)) >= Integer.parseInt(formattedCurrentDate.substring(0,2))) {
+                        blockNextButton();
+                    }
+                    else
+                    {
+                        unblockNextButton();
+                    }
+                }
+                else
+                {
+                    blockNextButton();
+                }
+            }
+            else {
+                unblockNextButton();
+            }
+        }
+        else
+        if(myPreference.getCurrentDateView().equalsIgnoreCase(WeekView)) {
+            if(cal.get(Calendar.WEEK_OF_YEAR) >= Calendar.getInstance().get(Calendar.WEEK_OF_YEAR)) {
+                blockNextButton();
+            }
+            else {
+                unblockNextButton();
+            }
+        }
+        else
+        if(myPreference.getCurrentDateView().equalsIgnoreCase(MonthView)) {
+            if(cal.get(Calendar.MONTH) >= Calendar.getInstance().get(Calendar.MONTH)) {
+                blockNextButton();
+            }
+            else {
+                unblockNextButton();
+            }
+        }
+        else
+        if(myPreference.getCurrentDateView().equalsIgnoreCase(YearView)) {
+            if(cal.get(Calendar.YEAR) >= Calendar.getInstance().get(Calendar.YEAR)) {
+                blockNextButton();
+            }
+            else {
+                unblockNextButton();
+            }
+        }
+    }
+
+    //BLOCKING AND UNBLOCKING NEXT BUTTON
+    public void blockNextButton()
+    {
+        isNextBlocked = true;
+        nextData.setImageResource(R.mipmap.nextblock);
+    }
+
+    public void unblockNextButton()
+    {
+        isNextBlocked = false;
+        nextData.setImageResource(R.mipmap.next);
+    }
+
+    //INITIALIZE ALL PIE CHART ELEMENTS
+    public void intiCharts() {
+        mChart = (PieChart) findViewById(R.id.chart1);
+        mChart.setUsePercentValues(false);
+        mChart.getDescription().setEnabled(false);
+        mChart.setExtraOffsets(5, 10, 5, 5);
+        mChart.setDragDecelerationFrictionCoef(0.95f);
+        mChart.setCenterTextTypeface(mTfLight);
+        mChart.setCenterText(generateCenterSpannableText());
+        mChart.setDrawHoleEnabled(true);
+        mChart.setHoleColor(Color.WHITE);
+        mChart.setTransparentCircleColor(Color.WHITE);
+        mChart.setTransparentCircleAlpha(110);
+        mChart.setHoleRadius(58f);
+        mChart.setTransparentCircleRadius(61f);
+        mChart.setDrawCenterText(true);
+        mChart.setRotationAngle(0);
+
+        // enable rotation of the chart by touch
+        mChart.setRotationEnabled(true);
+        mChart.setHighlightPerTapEnabled(true);
+
+        // add a selection listener
+        mChart.setOnChartValueSelectedListener(this);
+
+        setData(4, 100);
+
+        mChart.animateY(1400, Easing.EasingOption.EaseInCubic);
+        mChart.getLegend().setEnabled(false);
+
+        // entry label styling
+        mChart.setEntryLabelColor(Color.BLACK);
+        mChart.setEntryLabelTypeface(gothamMedium);
+        mChart.setEntryLabelTextSize(12f);
+    }
+
+        //SET FONTS TO THE TEXT
+    public void setFonts() {
+        fontUtils.setFont(txtCredit, FontUtils.GothamHTF_Bold);
+        fontUtils.setFont(txtDebit, FontUtils.GothamHTF_Bold);
+        fontUtils.setFont(btnBalanceMid, FontUtils.GothamHTF_Medium);
+        fontUtils.setFont(txtDate, FontUtils.GothamHTF_Medium);
+
+        fontUtils.setFont(txtCalendar, FontUtils.GothamHTF_Light);
+        fontUtils.setFont(txtDay, FontUtils.GothamHTF_Light);
+        fontUtils.setFont(txtWeek, FontUtils.GothamHTF_Light);
+        fontUtils.setFont(txtMonth, FontUtils.GothamHTF_Light);
+        fontUtils.setFont(txtYear, FontUtils.GothamHTF_Light);
+    }
+
+    //SET ALL EVENTS ON THE ELEMENTS
+    public void setMyEvents()
+    {
+        txtCredit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //if(isMenuVisibleOrNot==false) {
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    myFragment = AddAccFragment.newInstance("Credit",cal);
+                    fragmentTransaction.replace(R.id.subLayout,myFragment);
+                    fragmentTransaction.commit();
+                    mainLayout.setVisibility(View.GONE);
+                    subLayout.setVisibility(View.VISIBLE);
+                    mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+                    closeTheExpenseDateMenu();
+                /*}
+                else {
+                    closeTheExpenseDateMenu();
+                }*/
+            }
+        });
+
+        txtDebit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // if(isMenuVisibleOrNot==false) {
+                    //Pass no of parameters accordingly
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    myFragment = AddAccFragment.newInstance("Debit",cal);
+                    fragmentTransaction.replace(R.id.subLayout,myFragment);
+                    fragmentTransaction.commit();
+                    mainLayout.setVisibility(View.GONE);
+                    subLayout.setVisibility(View.VISIBLE);
+                    mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+                    closeTheExpenseDateMenu();
+                /* }
+                else{
+                    closeTheExpenseDateMenu();
+                }*/
+
+            }
+        });
+
+        nextData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isMenuVisibleOrNot==false && isNextBlocked==false) {
+                    mChart.spin(1000, mChart.getRotationAngle(), mChart.getRotationAngle() + 360, Easing.EasingOption
+                            .EaseInCubic);
+                    MMUtils.startAnimate(txtDate,R.anim.dateanimate,mainActivityInstance);
+                    MMUtils.startAnimate(connectorLeft,R.anim.dateanimate,mainActivityInstance);
+                    MMUtils.startAnimate(connectorRight,R.anim.dateanimate,mainActivityInstance);
+                    if(myPreference.getCurrentDateView().equalsIgnoreCase(DayView) || myPreference.getCurrentDateView().equalsIgnoreCase(DayView)) {
+                        txtDate.setText(getCurrentDateAndTime(1,false));
+                    }
+                    else
+                    if(myPreference.getCurrentDateView().equalsIgnoreCase(WeekView))
+                    {
+                        txtDate.setText(getCurrentWeekAndDate(1,false));
+                    }
+                    else
+                    if(myPreference.getCurrentDateView().equalsIgnoreCase(MonthView))
+                    {
+                        txtDate.setText(getCurrentMonth(1,false));
+                    }
+                    else
+                    if(myPreference.getCurrentDateView().equalsIgnoreCase(YearView))
+                    {
+                        txtDate.setText(getCurrentYear(1,false));
+                    }
+                    hasNotReachedCurrentDate();
+                }
+            }
+        });
+
+        prevData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isMenuVisibleOrNot==false) {
+                    mChart.spin(1000, mChart.getRotationAngle(), mChart.getRotationAngle() - 360, Easing.EasingOption
+                            .EaseInCubic);
+                    MMUtils.startAnimate(txtDate,R.anim.dateanimate,mainActivityInstance);
+                    MMUtils.startAnimate(connectorLeft,R.anim.dateanimate,mainActivityInstance);
+                    MMUtils.startAnimate(connectorRight,R.anim.dateanimate,mainActivityInstance);
+                    if(myPreference.getCurrentDateView().equalsIgnoreCase(DayView) || myPreference.getCurrentDateView().equalsIgnoreCase(DayView)) {
+                        txtDate.setText(getCurrentDateAndTime( -1,false));
+                    }
+                    else
+                    if(myPreference.getCurrentDateView().equalsIgnoreCase(WeekView))
+                    {
+                        txtDate.setText(getCurrentWeekAndDate(-1,false));
+                    }
+                    else
+                    if(myPreference.getCurrentDateView().equalsIgnoreCase(MonthView))
+                    {
+                        txtDate.setText(getCurrentMonth(-1,false));
+                    }
+                    else
+                    if(myPreference.getCurrentDateView().equalsIgnoreCase(YearView))
+                    {
+                        txtDate.setText(getCurrentYear(-1,false));
+                    }
+                    hasNotReachedCurrentDate();
+                }
+            }
+        });
+
+        txtCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setActive(txtCalendar);
+                closeTheExpenseDateMenu();
+
+                //OPENING DATEPICKER
+                DialogDatepickerFragment dialogDatepickerFragment = DialogDatepickerFragment.getInstance();
+                dialogDatepickerFragment.show(getSupportFragmentManager(), "");
+            }
+        });
+
+        txtYear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //BLOCKING THE EXECUTION IF THE VIEW IS ALREADY ACTIVE
+                if(!(isActive(txtYear))) {
+                    setCurrentCalendarView(YearView);
+                    subLayout.setVisibility(View.GONE);
+                    mainLayout.setVisibility(View.VISIBLE);
+                    txtDate.setText(getCurrentYear(0,true));
+                    hasNotReachedCurrentDate();
+                    MMUtils.startAnimate(txtDate,R.anim.dateanimate,mainActivityInstance);
+                    MMUtils.startAnimate(connectorLeft,R.anim.dateanimate,mainActivityInstance);
+                    MMUtils.startAnimate(connectorRight,R.anim.dateanimate,mainActivityInstance);
+                }
+                closeTheExpenseDateMenu();
+            }
+        });
+
+        txtMonth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!(isActive(txtMonth))) {
+                    setCurrentCalendarView(MonthView);
+                    subLayout.setVisibility(View.GONE);
+                    mainLayout.setVisibility(View.VISIBLE);
+                    txtDate.setText(getCurrentMonth(0, true));
+                    hasNotReachedCurrentDate();
+                    MMUtils.startAnimate(txtDate,R.anim.dateanimate,mainActivityInstance);
+                    MMUtils.startAnimate(connectorLeft,R.anim.dateanimate,mainActivityInstance);
+                    MMUtils.startAnimate(connectorRight,R.anim.dateanimate,mainActivityInstance);
+                }
+                closeTheExpenseDateMenu();
+            }
+        });
+
+        txtWeek.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!(isActive(txtWeek))) {
+                    setCurrentCalendarView(WeekView);
+                    subLayout.setVisibility(View.GONE);
+                    mainLayout.setVisibility(View.VISIBLE);
+                    txtDate.setText(getCurrentWeekAndDate(0, true));
+                    hasNotReachedCurrentDate();
+                    MMUtils.startAnimate(txtDate,R.anim.dateanimate,mainActivityInstance);
+                    MMUtils.startAnimate(connectorLeft,R.anim.dateanimate,mainActivityInstance);
+                    MMUtils.startAnimate(connectorRight,R.anim.dateanimate,mainActivityInstance);
+                }
+                closeTheExpenseDateMenu();
+            }
+        });
+
+        txtDay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!(isActive(txtDay))) {
+                    setCurrentCalendarView(DayView);
+                    subLayout.setVisibility(View.GONE);
+                    mainLayout.setVisibility(View.VISIBLE);
+                    txtDate.setText(getCurrentDateAndTime(0, true));
+                    hasNotReachedCurrentDate();
+                    MMUtils.startAnimate(txtDate,R.anim.dateanimate,mainActivityInstance);
+                    MMUtils.startAnimate(connectorLeft,R.anim.dateanimate,mainActivityInstance);
+                    MMUtils.startAnimate(connectorRight,R.anim.dateanimate,mainActivityInstance);
+                }
+                closeTheExpenseDateMenu();
+            }
+        });
+
+        mLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+            @Override
+            public void onPanelSlide(View panel, float slideOffset) {
+                Log.i(SLIDINGTAG, "onPanelSlide, offset " + slideOffset);
+            }
+
+            @Override
+            public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+                Log.i(SLIDINGTAG, "onPanelStateChanged " + newState);
+                if(isMenuVisibleOrNot == true) {
+                    closeTheExpenseDateMenu();
+                }
+                if(newState == SlidingUpPanelLayout.PanelState.EXPANDED) {
+                    MMUtils.startAnimate(bottomLayout,R.anim.blink,mainActivityInstance);
+                    bottomLayout.setBackgroundColor(getResources().getColor(R.color.LightGrey));
+                    txtCredit.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                    txtDebit.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                    MMUtils.startAnimate(btnBalanceMid,R.anim.animateslider,mainActivityInstance);
+                 }
+                else
+                if(newState == SlidingUpPanelLayout.PanelState.COLLAPSED) {
+                    MMUtils.startAnimate(bottomLayout,R.anim.blink,mainActivityInstance);
+                    bottomLayout.setBackgroundColor(getResources().getColor(R.color.White));
+                    txtCredit.setTextColor(getResources().getColor(R.color.DarkGrey));
+                    txtDebit.setTextColor(getResources().getColor(R.color.DarkGrey));
+                   }
+
+            }
+        });
+
+        mLayout.setFadeOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+            }
+        });
+
+        listOfBalance.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(mainActivityInstance, "onItemClick", Toast.LENGTH_SHORT).show();
+                closeTheExpenseDateMenu();
+            }
+        });
+    }
+
+    // TO CLOSE THE UPPER EXPENSE DATE MENU
+    public void closeTheExpenseDateMenu()
+    {
+        isMenuVisibleOrNot = false;
+        if(closeMenuAnime == null)
+        {closeMenuAnime = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.moveup);}
+        closeMenuAnime.setFillAfter(true);
+        expenseDateLayout.startAnimation(closeMenuAnime);
+        closeMenuAnime.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                expenseDateLayout.setTop(400);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+        });
+        closeMenuAnime = null;
+        expenseDateLayout.setVisibility(View.GONE);
+    }
+
+    //Datepicker date selected
+    public void onChangeDatepickerDialogDate(int year, int monthOfYear, int dayOfMonth)
+    {
+        cal.set(Calendar.YEAR, year);
+        cal.set(Calendar.MONTH, monthOfYear  );
+        cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        setCurrentCalendarView(DayView);
+        subLayout.setVisibility(View.GONE);
+        mainLayout.setVisibility(View.VISIBLE);
+        txtDate.setText(getCurrentDateAndTime(0,false));
+        MMUtils.startAnimate(txtDate,R.anim.dateanimate,mainActivityInstance);
+        //Checking for Next Button validation
+        hasNotReachedCurrentDate();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(subLayout.getVisibility() == View.VISIBLE)
+        {
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            AddAccFragment myFragment = new AddAccFragment();
+            fragmentManager.popBackStack();
+            fragmentTransaction.remove(myFragment);
+            fragmentTransaction.commit();
+            subLayout.setVisibility(View.GONE);
+            mainLayout.setVisibility(View.VISIBLE);
+            mainMenu.getItem(1).setVisible(false);
+            mainMenu.getItem(0).setVisible(true);
+            if(isMenuVisibleOrNot == true) {
+                closeTheExpenseDateMenu();
+            }
+        }
+        else
+        if (mLayout != null &&
+                (mLayout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED || mLayout.getPanelState() == SlidingUpPanelLayout.PanelState.ANCHORED)) {
+            mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+        } else
+        if(isMenuVisibleOrNot == true) {
+            closeTheExpenseDateMenu();
+        }
+        else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int monthOfYear,
+                          int dayOfMonth) {
+        // TODO Auto-generated method stub
+        // Toast.makeText(mainActivityInstance, "date="+dayOfMonth+"/"+monthOfYear+"/"+year, Toast.LENGTH_SHORT).show();
+        if(mainLayout.getVisibility() == View.VISIBLE) {
+            onChangeDatepickerDialogDate(year,monthOfYear,dayOfMonth);
+        }
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    //GETTING ALL ACCOUNT DATAS AND STORING IN RESPECTIVE VARIABLES
+    public void getDbDatas(String choice) {
+        incomeAccDb = new IncomeAccountDBAdapter(this);
+        incomeAccDb = incomeAccDb.open();
+
+        expenseAccDb = new ExpenseAccountDBAdapter(this);
+        expenseAccDb = expenseAccDb.open();
+
+        amountIArray = new ArrayList<Integer>();
+        dateOfTransIArray = new ArrayList<String>();
+        shortNotesIArray = new ArrayList<String>();
+        catgIArray = new ArrayList<String>();
+
+        amountEArray = new ArrayList<Integer>();
+        dateOfTransEArray = new ArrayList<String>();
+        shortNotesEArray = new ArrayList<String>();
+        paymentTypeEArray = new ArrayList<String>();
+        catgEArray = new ArrayList<String>();
+
+        SimpleDateFormat dateformater;
+        dateformater = new SimpleDateFormat("yyyy-MM-dd");
+        String date = dateformater.format(cal.getTime());
+
+        //FOR DIFFERENT TIME LIMITS
+        switch (choice){
+
+            default:  //THIS ALWAYS GIVES DATAS FOR THE CURRENT DATE
+                String [] tempIDatas, tempEDatas;
+
+                incomeDataArray = incomeAccDb.getAccountDetails(date,date);
+                if(incomeDataArray.size()>0) {
+                    for(int x=0;x<incomeDataArray.size();x++){
+                        tempIDatas = (incomeDataArray.get(x)).split("-#-");
+                        amountIArray.add(x,Integer.parseInt(tempIDatas[0]));
+                        totalIncome+=amountIArray.get(x);
+                        dateOfTransIArray.add(x,tempIDatas[1]);
+                        shortNotesIArray.add(x,tempIDatas[2]);
+                        catgIArray.add(x,tempIDatas[3]);
+                     }
+                 }
+
+                expenseDataArray = expenseAccDb.getAccountDetails(date,date);
+                if(expenseDataArray.size()>0){
+                    for(int x=0;x<expenseDataArray.size();x++){
+                        tempEDatas = expenseDataArray.get(x).split("-#-");
+                        amountEArray.add(x,Integer.parseInt(tempEDatas[0]));
+                        totalExpense+=amountEArray.get(x);
+                        dateOfTransEArray.add(x,tempEDatas[1]);
+                        shortNotesEArray.add(x,tempEDatas[2]);
+                        paymentTypeEArray.add(x,tempEDatas[3]);
+                        catgEArray.add(x,tempEDatas[4]);
+                    }
+                 }
+            break;
+        }
+        intiCharts();
+    }
+}

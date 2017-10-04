@@ -1,0 +1,141 @@
+package com.asisdroid.moneymanager.utility;
+
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.NotificationCompat;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.asisdroid.moneymanager.MainActivity;
+import com.asisdroid.moneymanager.R;
+import com.asisdroid.moneymanager.database.ExpenseAccountDBAdapter;
+import com.asisdroid.moneymanager.database.IncomeAccountDBAdapter;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+
+import static android.content.Context.ALARM_SERVICE;
+import static android.content.Context.BATTERY_SERVICE;
+
+/**
+ * Created by ashishkumarpolai on 9/18/2017.
+ */
+
+public class Alarmreceiver extends BroadcastReceiver {
+    NotificationManager  mNotificationManager;
+    Context thisContext ;
+    private SharedPreferences remainderType;
+    private ExpenseAccountDBAdapter expenseAccDb;
+
+    private Calendar cal = Calendar.getInstance();
+    private SimpleDateFormat dateformater;
+    private String dateStart, dateLast, notificationHead, notificationContent, notificationSubcontent, alertType;
+    private ArrayList<String> expenseDataArray;
+    private  String[] tempEDatas;
+    private int totalExpense = 0;
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        thisContext = context;
+         displayNotification(0);
+        Log.d("asisi", "The onStart() event");
+    }
+
+    private void displayNotification(int notifyid)
+    {
+        totalExpense = 0;
+        int highestAmount = 0;
+        String highestSpentCatg = "";
+        remainderType = thisContext.getSharedPreferences("remainderData", Context.MODE_PRIVATE);
+        alertType = remainderType.getString("alertType","noalert");
+
+        expenseAccDb = new ExpenseAccountDBAdapter(thisContext);
+        expenseAccDb = expenseAccDb.open();
+
+        if(alertType.equalsIgnoreCase("weekly")){
+            dateformater = new SimpleDateFormat("yyyy-MM-dd");
+            cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
+            dateStart = dateformater.format(cal.getTime());
+            cal.add(Calendar.DAY_OF_YEAR,6);
+            dateLast = dateformater.format(cal.getTime());
+        }
+        else  if(alertType.equalsIgnoreCase("monthly")){
+            dateformater = new SimpleDateFormat("yyyy-MM-dd");
+            dateStart = dateformater.format(cal.getTime());
+            dateStart=dateStart.substring(0,(dateStart.length()-2))+"01";
+            dateLast=dateStart.substring(0,(dateStart.length()-2))+String.valueOf(cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+        }
+        else{
+            dateformater = new SimpleDateFormat("yyyy-MM-dd");
+            dateStart = dateLast = dateformater.format(cal.getTime());
+        }
+
+        //Toast.makeText(thisContext, ""+dateStart+"--"+dateLast, Toast.LENGTH_SHORT).show();
+        notificationHead = "Monyger - Expense Remainder";
+        expenseDataArray = expenseAccDb.getAccountDetails(dateStart,dateLast);
+        if(expenseDataArray.size()>0){
+            for(int x=0;x<expenseDataArray.size();x++){
+                tempEDatas = expenseDataArray.get(x).split("-#-");
+                totalExpense+=Integer.parseInt(tempEDatas[0]);
+                if(Integer.parseInt(tempEDatas[0])>highestAmount){
+                    highestAmount = Integer.parseInt(tempEDatas[0]);
+                    highestSpentCatg = tempEDatas[4];
+                }
+            }
+        }
+
+       // Toast.makeText(thisContext, ""+totalExpense+"--"+highestAmount+"--"+highestSpentCatg, Toast.LENGTH_SHORT).show();
+
+        if(totalExpense>0) {
+            if (alertType.equalsIgnoreCase("weekly")) {
+                notificationContent = "This week, you have spent ₹ " + totalExpense + ".";
+            } else if (alertType.equalsIgnoreCase("monthly")) {
+                notificationContent = "This month, you have spent ₹ " + totalExpense + ".";
+            } else {
+                notificationContent = "Today, you have spent ₹ " + totalExpense + ".";
+            }
+
+            notificationSubcontent = "Your highest expense is ₹ " + highestAmount + " for " + highestSpentCatg + ".";
+        }
+        else{
+            if (alertType.equalsIgnoreCase("weekly")) {
+                notificationContent = "No expense for this week.";
+            } else if (alertType.equalsIgnoreCase("monthly")) {
+                notificationContent = "No expense for this month.";
+            } else {
+                notificationContent = "No expense for today";
+            }
+            notificationSubcontent = "Tap to see all Expense Details...";
+        }
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(thisContext);
+        mBuilder.setSmallIcon(R.drawable.icon_notifi);
+        Intent intent = new Intent(thisContext, MainActivity.class);
+        intent.putExtra(BATTERY_SERVICE, ALARM_SERVICE);
+        intent.putExtra("alertType",alertType);
+        PendingIntent pendingIntent = PendingIntent.getActivity(thisContext, 0, intent, 0);
+        mBuilder.setContentIntent(pendingIntent);
+        mBuilder.setLargeIcon(BitmapFactory.decodeResource(thisContext.getResources(), R.mipmap.ic_launcher));
+        mBuilder.setContentTitle(notificationHead);
+        mBuilder.setContentText(notificationContent);
+        mBuilder.setSubText(notificationSubcontent);
+        mBuilder.setAutoCancel(true);
+        Uri uri3= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        mBuilder.setSound(uri3);
+        mNotificationManager = (NotificationManager) thisContext.getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.cancel(notifyid);
+        mBuilder.getNotification().flags |= Notification.FLAG_AUTO_CANCEL;
+           /* notificationID allows you to update the notification later on. */
+        mNotificationManager.notify(notifyid, mBuilder.build());
+    }
+}

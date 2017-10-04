@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/White"
+    >
+    <TableRow>
+        <TextView
+            android:id="@+id/txtAmount"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/fontsize_13"
+            android:paddingTop="@dimen/size_3"
+            android:text="Amount - Rs 7000"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:paddingBottom="@dimen/size_3"
+            android:textColor="#000000"
+            android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft" />
+
+
+        <TextView
+            android:id="@+id/lblListItem"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/fontsize_13"
+            android:paddingTop="@dimen/size_3"
+            android:text="Date : 25th August, 2017"
+            android:paddingBottom="@dimen/size_3"
+            android:textColor="@color/colorPrimary"
+            android:layout_weight="1"
+            android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/txtPaymentType"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/fontsize_13"
+            android:paddingTop="@dimen/size_3"
+            android:text="Payment Type - Cash"
+            android:textStyle="italic"
+            android:paddingBottom="@dimen/size_3"
+            android:textColor="#000000"
+            android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft" />
+
+    </TableRow>
+
+    <TableRow>
+      <TextView
+        android:id="@+id/txtShortNotes"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/fontsize_13"
+        android:paddingTop="@dimen/size_3"
+        android:textStyle="italic"
+        android:text="Short Notes - Just needed for the etc etc wagera wagera"
+        android:paddingBottom="@dimen/size_3"
+        android:textColor="#000000"
+        android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft" />
+    </TableRow>
+
+</TableLayout>

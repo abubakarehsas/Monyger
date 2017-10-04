@@ -1,0 +1,95 @@
+package com.asisdroid.moneymanager.database;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+
+public class IncomeAccountDBAdapter extends SQLiteOpenHelper {
+    static final String DATABASE_NAME = "incomeaccountdetails.db";
+    static final int DATABASE_VERSION = 1;
+    public static final int NAME_COLUMN = 1;
+    // TODO: Create public field for each column in your table.
+    // SQL Statement to create a new database.
+    static final String DATABASE_CREATE = "create table " + "INCOME_ACCOUNT_DETAILS" +
+            "(AMOUNT text, DATE text, SHORTNOTES text, CATEGORY text)";
+    // Variable to hold the database instance
+    public SQLiteDatabase db;
+    // Context of the application using the database.
+    // Database open/upgrade helper
+
+    public IncomeAccountDBAdapter(Context _context) {
+        super(_context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        // TODO Auto-generated method stub
+        db.execSQL(DATABASE_CREATE);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        // TODO Auto-generated method stub
+        db.execSQL("DROP TABLE IF EXISTS INCOME_ACCOUNT_DETAILS");
+        onCreate(db);
+    }
+
+    public IncomeAccountDBAdapter open() throws SQLException {
+        db = this.getWritableDatabase();
+        return this;
+    }
+
+    public void close() {
+        db.close();
+    }
+
+    public SQLiteDatabase getDatabaseInstance() {
+        return db;
+    }
+
+    public void insertAccData(String amount, String date, String shortnotes, String paymenttype, String catgtype) {
+
+        ContentValues newValues = new ContentValues();
+        // Assign values for each row.
+        newValues.put("AMOUNT", amount);
+        newValues.put("DATE", date);
+        newValues.put("SHORTNOTES", shortnotes);
+        newValues.put("CATEGORY", catgtype);
+        // Insert the row into your table
+        db.insert("INCOME_ACCOUNT_DETAILS", null, newValues);
+        ///Toast.makeText(context, "Reminder Is Successfully Saved", Toast.LENGTH_LONG).show();
+
+    }
+
+    public int deleteAllAccDatas() {
+        int numberOFEntriesDeleted = db.delete("INCOME_ACCOUNT_DETAILS", null, null);
+        // Toast.makeText(context, "Number fo Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
+        return numberOFEntriesDeleted;
+    }
+
+    public ArrayList<String> getAllAccountDetails() {
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        //hp = new HashMap();
+
+        Cursor res = db.query("INCOME_ACCOUNT_DETAILS", new String[]{"ID","NAME","SHARE","PAID","GIVEORTAKE"}, null, null, null, null, "NAME DESC");
+        String giveortake;
+        if( res != null && res.moveToFirst() ) {
+            while (res.isAfterLast() == false) {
+                if(res.getString(res.getColumnIndex("GIVEORTAKE")).contains("-"))
+                giveortake="( Give )";
+                else
+                giveortake="( Take )";
+                array_list.add("Name  -  "+res.getString(res.getColumnIndex("NAME")).toUpperCase()+"\nShares  -   Rs "+res.getString(res.getColumnIndex("SHARE"))+"\nPaid   -   Rs "
+                +res.getString(res.getColumnIndex("PAID"))+"\nDue   -   Rs "+res.getString(res.getColumnIndex("GIVEORTAKE"))+" "+giveortake.toUpperCase());
+                res.moveToNext();
+            }}
+        return array_list;
+    }
+}
+

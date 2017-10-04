@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">Monyger</string>
+    <string name="action_settings">Settings</string>
+    <string name="addcredittext">Add Income</string>
+    <string name="adddebittext">Add Expense</string>
+    <string name="checkBalance">Balance = ₹ 0.00</string>
+    <string name="options">Options</string>
+    <string name="remainder">Remainder</string>
+    <string name="saveAmount">SAVE</string>
+    <string name="viewMoreNotes"><u>View more</u></string>
+    <string name="remainderAlertHead"><u>Remainder Alert</u></string>
+
+    <string name="red_color">#FF0000</string>
+    <string name="green_color">#8FBC8F</string>
+    <string name="orange_color">#F4A460</string>
+    <string name="violet_color">#008080</string>
+
+    <!--INCOME CATGEORY-->
+    <string name="catg_salary">Salary</string>
+    <string name="catg_homerent">Home Rent</string>
+
+
+    <!--EXPENSE CATEGORY-->
+    <string name="catg_food">Food</string>
+    <string name="catg_transport">Travel</string>
+    <string name="catg_bill">Bills</string>
+    <string name="catg_carandbike">Car and Bike</string>
+    <string name="catg_clothes">Cloth</string>
+    <string name="catg_eatout">Eat out</string>
+    <string name="catg_phone">Phone</string>
+    <string name="catg_entertainment">Entertain</string>
+    <string name="catg_rental">Rent</string>
+    <string name="catg_gift">Gift</string>
+    <string name="catg_health">Health</string>
+    <string name="catg_pet">Pet</string>
+    <string name="catg_sports">Sports</string>
+    <string name="catg_electronics">Electronics</string>
+    <string name="catg_saving">Saving</string>
+    <string name="catg_tax">Income Tax</string>
+
+    <string name="help">Help Me</string>
+    <string name="remind_expense">Remind Me </string>
+
+    <string name="help_msg1">All the data\'s shown in the app is for this date or period of time.
+        The arrow-buttons will allow you to see all the data\'s for the next or prev respective date.
+    </string>
+    <string name="help_msg2">You can change your default daywise view to monthly, yearly or weekly wise view and see your data\'s for your selected period of time. Even, you can directly see a particular date\'s data by using the SELECT option from the submenu.</string>
+    <string name="help_msg3">This shows all your datas for your specified period in simplest form. In the center of the chart, you can see your TOTAL-INCOME and TOTAL EXPENSE. The slices shows the PERCENTAGE of your expense been spend in a particular category. CLICK ON THE SLICES TO SEE THE DETAILS.</string>
+    <string name="help_msg4">This shows the balance i.e., ( YOUR INCOME FOR THE SPECIFIED PERIOD - YOUR EXPENSE FOR THE SPECIFIED PERIOD ). Tap on this to see the details.</string>
+    <string name="help_msg5">Per day expensable balance is the amount of money you can spent per day for this month. This is calculated in the formula :- ( TOTAL MONTHLY BALANCE/NO OF DAYS REMAINING FOR THE MONTH ). </string>
+    <string name="help_msg6">Tap on the bell icon in the menu bar. You will get a remainder dialog. Set the type of remainder (i.e. Weekly, daily, monthly), you want for getting notified on your specified time and day about your expenses.</string>
+    <string name="help_msg7">Checking the remind-me option will get you notified everyday 10 PM to add your expenses.</string>
+    <string name="help_msg8">This will search the category from the all group of categories including your custom added categoried.</string>
+    <string name="help_msg9">The most used 8 categories will be shown here always for your easier use.</string>
+    <string name="help_msg10">Just tap on the more button to see all available catgeories including your custom catgeories. You can even delete your added custom categories from the more dialog.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_helpitem_list">HelpItems</string>
+    <string name="title_helpitem_detail">HelpItem Detail</string>F4A460
+</resources>

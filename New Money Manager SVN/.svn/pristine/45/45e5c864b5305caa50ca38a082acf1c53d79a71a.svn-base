@@ -1,0 +1,186 @@
+package com.asisdroid.moneymanager.Dialog;
+
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.asisdroid.moneymanager.AddAccFragment;
+import com.asisdroid.moneymanager.MainActivity;
+import com.asisdroid.moneymanager.R;
+import com.asisdroid.moneymanager.database.CategoryDBAdapter;
+import com.asisdroid.moneymanager.database.CategoryIncomeDBAdapter;
+import com.asisdroid.moneymanager.utility.MMUtils;
+
+import java.util.ArrayList;
+
+/**
+ * Created by ashishkumarpolai on 7/14/2017.
+ * CAN BE USED FOR ALL DIALOGS
+ */
+
+public class DialogRemainderFragment extends DialogFragment implements View.OnClickListener {
+
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    private LayoutInflater inflater;
+    private View addRemainderView;
+
+    public CategoryDBAdapter catgExpenseDbInDialog;
+    public CategoryIncomeDBAdapter catgIncomeDbInDialog;
+    public ArrayList<Integer> myECategoriesUseListinDialog, myICategoriesUseListinDialog;
+
+    private AlertDialog alertDialog;
+    private  AlertDialog.Builder alertDialogBuilder;
+
+    private EditText edttxtNewCatg;
+    private TextView txtDailyAlert, txtWeeklyAlert, txtMonthlyAlert;
+    private Button btnAdd, btnCancel;
+
+    private boolean isESuccessfullySavedOrNot = false, isISuccessfullySavedOrNot = false;
+
+    private String searchedCatg, catgType;
+
+    //INTERFACE CREATED TO INTERACT WITH THE PARENT FARGMENT OR ANY OTHER FRAGMENT OR ACTIVITY
+    public interface onRemainderDialogClosed{
+        //ABSTRACT METHOD TO BE CALLED FROM THE IMPLEMENTED FRAGMENT
+        public void onRemainderDClosed(String targetView, String targetDate);
+    }
+    //INTERFACE OBJECT CREATED FOR GIVING THE INSTANCE OF THE INTERFACE FOR ANY OTHER FRAGMENT OR ACTIVITY
+    public static onRemainderDialogClosed dialogCloseListener;
+
+    public static DialogRemainderFragment getInstance(MainActivity mainInstance){
+        //ALLOCATING THE IMPLEMENTING FRAGMENT TO THE INTERFACE'S OBJECT i.e. CREATING INTERFACE FOR THE FRAGMENT
+        dialogCloseListener = (onRemainderDialogClosed) mainInstance;
+        DialogRemainderFragment addcatgfragment = new DialogRemainderFragment();
+        /*Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, searchedCatgeory);
+        args.putString(ARG_PARAM2, catgType);
+        addcatgfragment.setArguments(args);*/
+        return addcatgfragment;
+     }
+
+    /*
+    //PASS SOME VARIABLE FROM THE ACTIVITY
+
+    public void setCal(Calendar cal){
+        this.cal = cal;
+    }*/
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+       /* if (getArguments() != null) {
+            searchedCatg = getArguments().getString(ARG_PARAM1);
+            catgType = getArguments().getString(ARG_PARAM2);
+        }*/
+    }
+
+    //WILL BE CALLED ONLY ON SHOW DIALOG
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        alertDialogBuilder = new AlertDialog.Builder(getActivity());
+        inflater = getActivity().getLayoutInflater();
+        addRemainderView = inflater.inflate(R.layout.remainder_dialog_layout, null);
+        alertDialogBuilder.setView(addRemainderView);
+
+        alertDialog = alertDialogBuilder.create();
+        alertDialog.setCanceledOnTouchOutside(true);
+        return alertDialog;
+    }
+
+//CALCULATOR CODES
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initAddCategoryUI();
+        initAddCatgEvents();
+    }
+
+    public void initAddCategoryUI()
+    {
+        txtDailyAlert = (TextView) addRemainderView.findViewById(R.id.alertType1);
+        txtWeeklyAlert = (TextView) addRemainderView.findViewById(R.id.alertType2);
+        txtMonthlyAlert = (TextView) addRemainderView.findViewById(R.id.alertType3);
+
+        txtDailyAlert.setOnClickListener(this);
+        txtWeeklyAlert.setOnClickListener(this);
+        txtMonthlyAlert.setOnClickListener(this);
+    }
+
+    public void initAddCatgEvents()
+    {
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        //CALLING THE ABSTRACT METHOD OF THE INTERFACE
+        dialogCloseListener.onRemainderDClosed("","");
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.alertType1:
+                MMUtils.startAnimate(txtDailyAlert, R.anim.shake, addRemainderView.getContext());
+                txtDailyAlert.setBackground(getResources().getDrawable(R.drawable.category_selected_border_gradient));
+                txtDailyAlert.setTag(R.drawable.category_selected_border_gradient);
+                txtDailyAlert.setCompoundDrawablesWithIntrinsicBounds(null,getResources().getDrawable(R.drawable.selected_alert),null,null);
+                if(txtWeeklyAlert.getTag().equals(R.drawable.category_selected_border_gradient)) {
+                    txtWeeklyAlert.setBackground(getResources().getDrawable(R.drawable.category_gradient_border));
+                    txtWeeklyAlert.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.weekly_alert), null, null);
+                }
+                if(txtMonthlyAlert.getTag().equals(R.drawable.category_selected_border_gradient)) {
+                    txtMonthlyAlert.setBackground(getResources().getDrawable(R.drawable.category_gradient_border));
+                    txtMonthlyAlert.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.monthly_alert), null, null);
+                }
+                break;
+
+            case R.id.alertType2:
+                MMUtils.startAnimate(txtWeeklyAlert, R.anim.shake, addRemainderView.getContext());
+                txtWeeklyAlert.setBackground(getResources().getDrawable(R.drawable.category_selected_border_gradient));
+                txtWeeklyAlert.setTag(R.drawable.category_selected_border_gradient);
+                txtWeeklyAlert.setCompoundDrawablesWithIntrinsicBounds(null,getResources().getDrawable(R.drawable.selected_alert),null,null);
+                if(txtDailyAlert.getTag().equals(R.drawable.category_selected_border_gradient)) {
+                    txtDailyAlert.setBackground(getResources().getDrawable(R.drawable.category_gradient_border));
+                    txtDailyAlert.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.daily_alert), null, null);
+                }
+                if(txtMonthlyAlert.getTag().equals(R.drawable.category_selected_border_gradient)) {
+                    txtMonthlyAlert.setBackground(getResources().getDrawable(R.drawable.category_gradient_border));
+                    txtMonthlyAlert.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.monthly_alert), null, null);
+                }
+                break;
+
+            case R.id.alertType3:
+                MMUtils.startAnimate(txtMonthlyAlert, R.anim.shake, addRemainderView.getContext());
+                txtMonthlyAlert.setBackground(getResources().getDrawable(R.drawable.category_selected_border_gradient));
+                txtMonthlyAlert.setTag(R.drawable.category_selected_border_gradient);
+                txtMonthlyAlert.setCompoundDrawablesWithIntrinsicBounds(null,getResources().getDrawable(R.drawable.selected_alert),null,null);
+                if(txtWeeklyAlert.getTag().equals(R.drawable.category_selected_border_gradient)) {
+                    txtWeeklyAlert.setBackground(getResources().getDrawable(R.drawable.category_gradient_border));
+                    txtWeeklyAlert.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.weekly_alert), null, null);
+                }
+                if(txtDailyAlert.getTag().equals(R.drawable.category_selected_border_gradient)) {
+                    txtDailyAlert.setBackground(getResources().getDrawable(R.drawable.category_gradient_border));
+                    txtDailyAlert.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.daily_alert), null, null);
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
+}
