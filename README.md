@@ -21,4 +21,4 @@ Latest Updates :-
 6. Improved working efficiency.
 
 Find the app in the google play store at the below link :-
-https://play.google.com/store/apps/details?id=com.asisdroid.moneymanager&hl=en
+   https://play.google.com/store/apps/details?id=com.asisdroid.moneymanager&hl=en
